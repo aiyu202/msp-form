@@ -1,0 +1,627 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>邁斯朋管理顧問 ─ 智取店求職申請表</title>
+<style>
+  *{box-sizing:border-box;margin:0;padding:0}
+  :root{
+    --green:#1D9E75;--green-dark:#0F6E56;--green-light:#E1F5EE;
+    --red:#E24B4A;--red-light:#FCEBEB;
+    --border:#e0e0e0;--border-focus:#1D9E75;
+    --bg:#f7f8fa;--card:#fff;
+    --text:#1a1a1a;--text2:#666;--text3:#999;
+    --radius:10px;--radius-sm:6px;
+  }
+  body{font-family:'Noto Sans TC',sans-serif;background:var(--bg);color:var(--text);font-size:15px;line-height:1.6;min-height:100vh}
+  a{color:var(--green)}
+
+  /* ─── Header ─── */
+  .header{background:#fff;border-bottom:1px solid var(--border);padding:16px 24px;display:flex;align-items:center;gap:14px;position:sticky;top:0;z-index:100;box-shadow:0 1px 4px rgba(0,0,0,.06)}
+  .header-icon{width:44px;height:44px;border-radius:10px;background:var(--green-light);display:flex;align-items:center;justify-content:center;flex-shrink:0}
+  .header-icon svg{width:24px;height:24px;fill:var(--green)}
+  .header-info h1{font-size:16px;font-weight:600;color:var(--text)}
+  .header-info p{font-size:12px;color:var(--text2)}
+
+  /* ─── Progress ─── */
+  .progress-wrap{background:#fff;border-bottom:1px solid var(--border);padding:12px 24px}
+  .progress-steps{display:flex;gap:0;max-width:680px;margin:0 auto}
+  .ps{flex:1;display:flex;flex-direction:column;align-items:center;gap:4px;position:relative}
+  .ps:not(:last-child)::after{content:'';position:absolute;top:11px;left:50%;width:100%;height:2px;background:var(--border);z-index:0}
+  .ps.done::after{background:var(--green)}
+  .ps-dot{width:22px;height:22px;border-radius:50%;border:2px solid var(--border);background:#fff;display:flex;align-items:center;justify-content:center;font-size:10px;font-weight:600;color:var(--text3);z-index:1;transition:all .3s}
+  .ps.active .ps-dot{border-color:var(--green);background:var(--green);color:#fff}
+  .ps.done .ps-dot{border-color:var(--green);background:var(--green);color:#fff}
+  .ps-lbl{font-size:10px;color:var(--text3);white-space:nowrap}
+  .ps.active .ps-lbl{color:var(--green);font-weight:600}
+  .ps.done .ps-lbl{color:var(--green)}
+
+  /* ─── Main ─── */
+  .main{max-width:680px;margin:0 auto;padding:20px 16px 80px}
+
+  /* ─── Section Card ─── */
+  .section-card{background:var(--card);border:1px solid var(--border);border-radius:var(--radius);padding:20px 22px;margin-bottom:14px;display:none;animation:fadeUp .25s ease}
+  .section-card.active{display:block}
+  @keyframes fadeUp{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:translateY(0)}}
+  .section-title{font-size:13px;font-weight:600;color:var(--text2);text-transform:uppercase;letter-spacing:.07em;margin-bottom:18px;display:flex;align-items:center;gap:8px;padding-bottom:10px;border-bottom:1px solid #f0f0f0}
+  .section-num{width:22px;height:22px;border-radius:50%;background:var(--green-light);color:var(--green);font-size:11px;font-weight:700;display:inline-flex;align-items:center;justify-content:center;flex-shrink:0}
+  .en-label{font-size:11px;font-weight:400;text-transform:none;letter-spacing:0;color:var(--text3)}
+
+  /* ─── Fields ─── */
+  .field-row{display:grid;gap:12px;margin-bottom:12px}
+  .field-row.col2{grid-template-columns:1fr 1fr}
+  .field-row.col3{grid-template-columns:1fr 1fr 1fr}
+  .field-row.col1{grid-template-columns:1fr}
+  .field-group{display:flex;flex-direction:column;gap:5px}
+  label.fl{font-size:13px;color:var(--text2);font-weight:500}
+  label.fl .req{color:var(--red);margin-left:2px}
+  input[type=text],input[type=email],input[type=tel],input[type=date],select,textarea{
+    width:100%;font-size:14px;padding:9px 11px;border:1px solid var(--border);
+    border-radius:var(--radius-sm);background:#fff;color:var(--text);
+    outline:none;transition:border .2s,box-shadow .2s;font-family:inherit
+  }
+  input:focus,select:focus,textarea:focus{border-color:var(--green);box-shadow:0 0 0 3px rgba(29,158,117,.1)}
+  textarea{resize:vertical;min-height:70px}
+  select{cursor:pointer}
+  input::placeholder,textarea::placeholder{color:var(--text3)}
+
+  /* ─── Checkbox Pills ─── */
+  .check-pills{display:flex;flex-wrap:wrap;gap:7px;margin-top:2px}
+  .pill{display:flex;align-items:center;gap:5px;padding:6px 12px;border:1px solid var(--border);border-radius:20px;cursor:pointer;font-size:13px;background:#fff;transition:all .15s;user-select:none}
+  .pill:hover{border-color:var(--green)}
+  .pill input{accent-color:var(--green);width:14px;height:14px}
+  .pill.checked{border-color:var(--green);background:var(--green-light);color:var(--green-dark);font-weight:500}
+
+  /* ─── Schedule Grid ─── */
+  .shift-block{margin-bottom:16px;border:1px solid var(--border);border-radius:var(--radius-sm);overflow:hidden}
+  .shift-header{background:#f8f9fa;padding:8px 12px;font-size:12px;font-weight:600;color:var(--text2);border-bottom:1px solid var(--border)}
+  .shift-body{padding:12px}
+  .sched-grid{display:grid;grid-template-columns:repeat(7,1fr);gap:6px;margin-bottom:10px}
+  .sched-day{display:flex;flex-direction:column;align-items:center;gap:4px}
+  .sched-day span{font-size:11px;color:var(--text3);font-weight:500}
+  .sched-day input[type=checkbox]{width:18px;height:18px;accent-color:var(--green);cursor:pointer}
+
+  /* ─── Y/N Buttons ─── */
+  .yn-group{display:flex;gap:6px}
+  .yn-btn{padding:6px 16px;border:1px solid var(--border);border-radius:var(--radius-sm);font-size:13px;cursor:pointer;background:#fff;color:var(--text);transition:all .15s;font-family:inherit}
+  .yn-btn:hover{border-color:var(--green)}
+  .yn-btn.sel-y{background:#EAF3DE;border-color:#3B6D11;color:#3B6D11;font-weight:600}
+  .yn-btn.sel-n{background:var(--red-light);border-color:var(--red);color:#A32D2D;font-weight:600}
+
+  /* ─── Declaration ─── */
+  .decl-box{font-size:12px;color:var(--text2);line-height:1.75;background:#f8f9fa;padding:14px;border-radius:var(--radius-sm);border:1px solid var(--border);max-height:170px;overflow-y:auto;margin-bottom:14px}
+  .yn-row{display:flex;justify-content:space-between;align-items:center;padding:9px 0;border-bottom:1px solid #f0f0f0;gap:12px}
+  .yn-row:last-of-type{border-bottom:none}
+  .yn-row p{font-size:13px;flex:1}
+
+  /* ─── Navigation ─── */
+  .nav-bar{position:fixed;bottom:0;left:0;right:0;background:#fff;border-top:1px solid var(--border);padding:12px 20px;display:flex;justify-content:space-between;align-items:center;box-shadow:0 -2px 8px rgba(0,0,0,.06);z-index:100}
+  .nav-step{font-size:12px;color:var(--text3)}
+  .btn{padding:10px 22px;border-radius:var(--radius-sm);font-size:14px;font-weight:600;cursor:pointer;border:1px solid var(--border);background:#fff;color:var(--text);transition:all .15s;display:flex;align-items:center;gap:6px;font-family:inherit}
+  .btn:hover{background:#f0f0f0}
+  .btn.primary{background:var(--green);color:#fff;border-color:var(--green)}
+  .btn.primary:hover{background:var(--green-dark)}
+  .btn.hidden{visibility:hidden}
+
+  /* ─── Success ─── */
+  .success-wrap{display:none;text-align:center;padding:3rem 1rem}
+  .success-wrap.show{display:block}
+  .success-icon{width:72px;height:72px;border-radius:50%;background:var(--green-light);display:flex;align-items:center;justify-content:center;margin:0 auto 1.25rem}
+  .success-icon svg{width:36px;height:36px;stroke:var(--green);stroke-width:2.5;fill:none}
+  .success-wrap h2{font-size:20px;font-weight:700;margin-bottom:.5rem}
+  .success-wrap p{font-size:14px;color:var(--text2);line-height:1.8}
+
+  /* ─── Toast ─── */
+  .toast{position:fixed;bottom:80px;left:50%;transform:translateX(-50%) translateY(20px);background:#1a1a1a;color:#fff;padding:10px 20px;border-radius:20px;font-size:13px;opacity:0;transition:all .3s;pointer-events:none;z-index:200;white-space:nowrap}
+  .toast.show{opacity:1;transform:translateX(-50%) translateY(0)}
+
+  /* ─── Sending overlay ─── */
+  .overlay{position:fixed;inset:0;background:rgba(255,255,255,.85);display:none;align-items:center;justify-content:center;flex-direction:column;gap:12px;z-index:300;font-size:14px;color:var(--text2)}
+  .overlay.show{display:flex}
+  .spinner{width:36px;height:36px;border:3px solid var(--green-light);border-top-color:var(--green);border-radius:50%;animation:spin .7s linear infinite}
+  @keyframes spin{to{transform:rotate(360deg)}}
+
+  @media(max-width:540px){
+    .field-row.col2,.field-row.col3{grid-template-columns:1fr}
+    .ps-lbl{display:none}
+    .header-info p{display:none}
+  }
+</style>
+</head>
+<body>
+
+<!-- Header -->
+<div class="header">
+  <div class="header-icon">
+    <svg viewBox="0 0 24 24"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+  </div>
+  <div class="header-info">
+    <h1>邁斯朋管理顧問有限公司</h1>
+    <p>MSP Management Consulting Co., Ltd. ｜ 智取店求職申請表</p>
+  </div>
+</div>
+
+<!-- Progress -->
+<div class="progress-wrap">
+  <div class="progress-steps" id="progressSteps"></div>
+</div>
+
+<!-- Main -->
+<div class="main">
+
+  <!-- Step 1 -->
+  <div class="section-card active" id="step1">
+    <div class="section-title">
+      <span class="section-num">1</span> 個人資訊 <span class="en-label">Personal Information</span>
+    </div>
+    <div class="field-row col1">
+      <div class="field-group">
+        <label class="fl">應徵班別<span class="req">*</span></label>
+        <div class="check-pills" id="shiftPills">
+          <label class="pill"><input type="checkbox" name="shift" value="早班"> 早班</label>
+          <label class="pill"><input type="checkbox" name="shift" value="晚班"> 晚班</label>
+          <label class="pill"><input type="checkbox" name="shift" value="假日早班"> 假日早班</label>
+          <label class="pill"><input type="checkbox" name="shift" value="假日晚班"> 假日晚班</label>
+          <label class="pill"><input type="checkbox" name="shift" value="夜班"> 夜班</label>
+        </div>
+      </div>
+    </div>
+    <div class="field-row col2">
+      <div class="field-group"><label class="fl">中文姓名<span class="req">*</span></label><input type="text" id="f_name" placeholder="請填寫全名"></div>
+      <div class="field-group"><label class="fl">國籍<span class="req">*</span></label><input type="text" id="f_nationality" placeholder="例：中華民國"></div>
+    </div>
+    <div class="field-row col3">
+      <div class="field-group">
+        <label class="fl">性別<span class="req">*</span></label>
+        <select id="f_gender"><option value="">請選擇</option><option>男</option><option>女</option><option>其他</option></select>
+      </div>
+      <div class="field-group"><label class="fl">出生日期<span class="req">*</span></label><input type="date" id="f_birth"></div>
+      <div class="field-group"><label class="fl">身分證字號<span class="req">*</span></label><input type="text" id="f_id" placeholder="A123456789" maxlength="10"></div>
+    </div>
+    <div class="field-row col2">
+      <div class="field-group"><label class="fl">身高 (cm)</label><input type="text" id="f_height" placeholder="165"></div>
+      <div class="field-group"><label class="fl">體重 (kg)</label><input type="text" id="f_weight" placeholder="60"></div>
+    </div>
+    <div class="field-row col2">
+      <div class="field-group"><label class="fl">手機<span class="req">*</span></label><input type="tel" id="f_phone" placeholder="09XX-XXX-XXX"></div>
+      <div class="field-group"><label class="fl">電子信箱<span class="req">*</span></label><input type="email" id="f_email" placeholder="example@mail.com"></div>
+    </div>
+    <div class="field-row col1">
+      <div class="field-group"><label class="fl">通訊地址<span class="req">*</span></label><input type="text" id="f_address" placeholder="縣市 + 區 + 路街門號"></div>
+    </div>
+  </div>
+
+  <!-- Step 2 -->
+  <div class="section-card" id="step2">
+    <div class="section-title"><span class="section-num">2</span> 教育背景 <span class="en-label">Education Background</span></div>
+    <div style="font-size:12px;color:var(--text3);margin-bottom:12px">請填寫最高學歷（最多兩筆）</div>
+    <div class="field-row col3">
+      <div class="field-group"><label class="fl">起訖年份</label><input type="text" id="f_edu1_period" placeholder="2018 – 2022"></div>
+      <div class="field-group"><label class="fl">學校名稱</label><input type="text" id="f_edu1_school" placeholder="學校名稱"></div>
+      <div class="field-group"><label class="fl">科系別</label><input type="text" id="f_edu1_dept" placeholder="科系"></div>
+    </div>
+    <div class="field-row col3">
+      <div class="field-group"><label class="fl">起訖年份（選填）</label><input type="text" id="f_edu2_period" placeholder="2015 – 2018"></div>
+      <div class="field-group"><label class="fl">學校名稱（選填）</label><input type="text" id="f_edu2_school" placeholder="學校名稱"></div>
+      <div class="field-group"><label class="fl">科系別（選填）</label><input type="text" id="f_edu2_dept" placeholder="科系"></div>
+    </div>
+  </div>
+
+  <!-- Step 3 -->
+  <div class="section-card" id="step3">
+    <div class="section-title"><span class="section-num">3</span> 班表資訊 <span class="en-label">Schedule Information</span></div>
+    <div style="font-size:12px;color:var(--text3);margin-bottom:12px">請勾選各班次可上班日</div>
+
+    <div class="shift-block">
+      <div class="shift-header">☀️ 早班 07:30–13:30（彈性 07:00–08:30 可到班，2–5 小時）</div>
+      <div class="shift-body">
+        <div class="sched-grid" id="morning-grid">
+          <div class="sched-day"><span>一</span><input type="checkbox" data-shift="morning" data-day="1"></div>
+          <div class="sched-day"><span>二</span><input type="checkbox" data-shift="morning" data-day="2"></div>
+          <div class="sched-day"><span>三</span><input type="checkbox" data-shift="morning" data-day="3"></div>
+          <div class="sched-day"><span>四</span><input type="checkbox" data-shift="morning" data-day="4"></div>
+          <div class="sched-day"><span>五</span><input type="checkbox" data-shift="morning" data-day="5"></div>
+          <div class="sched-day"><span>六</span><input type="checkbox" data-shift="morning" data-day="6"></div>
+          <div class="sched-day"><span>日</span><input type="checkbox" data-shift="morning" data-day="7"></div>
+        </div>
+        <div class="field-row col2">
+          <div class="field-group">
+            <label class="fl">偏好早班時段</label>
+            <select id="f_morning_pref"><option>07:00–12:00</option><option>07:30–12:30</option><option>08:00–13:00</option><option selected>08:30–13:30</option></select>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="shift-block">
+      <div class="shift-header">🌙 晚班 17:30–23:30（彈性 17:30–18:30 可到班，2–6 小時）</div>
+      <div class="shift-body">
+        <div class="sched-grid">
+          <div class="sched-day"><span>一</span><input type="checkbox" data-shift="evening" data-day="1"></div>
+          <div class="sched-day"><span>二</span><input type="checkbox" data-shift="evening" data-day="2"></div>
+          <div class="sched-day"><span>三</span><input type="checkbox" data-shift="evening" data-day="3"></div>
+          <div class="sched-day"><span>四</span><input type="checkbox" data-shift="evening" data-day="4"></div>
+          <div class="sched-day"><span>五</span><input type="checkbox" data-shift="evening" data-day="5"></div>
+          <div class="sched-day"><span>六</span><input type="checkbox" data-shift="evening" data-day="6"></div>
+          <div class="sched-day"><span>日</span><input type="checkbox" data-shift="evening" data-day="7"></div>
+        </div>
+        <div class="field-row col2">
+          <div class="field-group"><label class="fl">可提前一小時上班（→17:30）？</label><div class="yn-group" data-yn="early"><button class="yn-btn" onclick="setYN(this,'early','Y')">是</button><button class="yn-btn" onclick="setYN(this,'early','N')">否</button></div></div>
+          <div class="field-group"><label class="fl">可延長一小時下班（→23:30）？</label><div class="yn-group" data-yn="late"><button class="yn-btn" onclick="setYN(this,'late','Y')">是</button><button class="yn-btn" onclick="setYN(this,'late','N')">否</button></div></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="shift-block">
+      <div class="shift-header">🌙 夜班 23:30–03:30</div>
+      <div class="shift-body">
+        <div class="sched-grid">
+          <div class="sched-day"><span>一</span><input type="checkbox" data-shift="night" data-day="1"></div>
+          <div class="sched-day"><span>二</span><input type="checkbox" data-shift="night" data-day="2"></div>
+          <div class="sched-day"><span>三</span><input type="checkbox" data-shift="night" data-day="3"></div>
+          <div class="sched-day"><span>四</span><input type="checkbox" data-shift="night" data-day="4"></div>
+          <div class="sched-day"><span>五</span><input type="checkbox" data-shift="night" data-day="5"></div>
+          <div class="sched-day"><span>六</span><input type="checkbox" data-shift="night" data-day="6"></div>
+          <div class="sched-day"><span>日</span><input type="checkbox" data-shift="night" data-day="7"></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="field-row col2">
+      <div class="field-group"><label class="fl">預計報到日期</label><input type="date" id="f_start_date"></div>
+      <div class="field-group"><label class="fl">交通工具</label><input type="text" id="f_transport" placeholder="例：機車、捷運"></div>
+    </div>
+    <div class="field-row col2">
+      <div class="field-group"><label class="fl">是否持有本人帳戶</label><div class="yn-group" data-yn="acct"><button class="yn-btn" onclick="setYN(this,'acct','Y')">是</button><button class="yn-btn" onclick="setYN(this,'acct','N')">否</button></div></div>
+      <div class="field-group"><label class="fl">可彈性支援同區域門市（填門市名稱）</label><input type="text" id="f_support_store" placeholder="無則空白"></div>
+    </div>
+    <div class="field-row col1">
+      <div class="field-group"><label class="fl">班表備註</label><textarea id="f_schedule_note" placeholder="其他說明..."></textarea></div>
+    </div>
+  </div>
+
+  <!-- Step 4 -->
+  <div class="section-card" id="step4">
+    <div class="section-title"><span class="section-num">4</span> 工作經驗 <span class="en-label">Working Experiences</span></div>
+    <div style="font-size:12px;color:var(--text3);margin-bottom:12px">請填寫最近一份工作（無工作經驗可略過）</div>
+    <div class="field-row col2">
+      <div class="field-group"><label class="fl">公司名稱</label><input type="text" id="f_co_name" placeholder="前公司名稱"></div>
+      <div class="field-group"><label class="fl">工作地點</label><input type="text" id="f_co_location" placeholder="縣市 / 地區"></div>
+    </div>
+    <div class="field-row col2">
+      <div class="field-group"><label class="fl">職位</label><input type="text" id="f_position" placeholder="職稱"></div>
+      <div class="field-group"><label class="fl">在職期間</label><input type="text" id="f_period" placeholder="2022.01 – 2024.06"></div>
+    </div>
+    <div class="field-row col2">
+      <div class="field-group"><label class="fl">離職薪資（月薪）</label><input type="text" id="f_salary" placeholder="NT$"></div>
+      <div class="field-group"><label class="fl">離職原因</label><input type="text" id="f_leave_reason" placeholder="請簡述"></div>
+    </div>
+    <div class="field-row col1">
+      <div class="field-group"><label class="fl">工作職責描述</label><textarea id="f_job_desc" placeholder="主要工作內容..."></textarea></div>
+    </div>
+  </div>
+
+  <!-- Step 5 -->
+  <div class="section-card" id="step5">
+    <div class="section-title"><span class="section-num">5</span> 聲明及同意 <span class="en-label">Declarations &amp; Agreement</span></div>
+    <div class="decl-box">
+      （一）本人同意以上填寫之所有資料，無償並無條件提供給邁斯朋管理顧問有限公司蒐集、處理及利用，使用範圍為本人求職及聘僱；邁斯朋管理顧問有限公司應善盡保密義務，維護本人個人資料之權益，不將個人資料作為派遣以外之其他用途；雙方同意並遵守。<br><br>
+      （二）本人確認以上資料全屬實，無捏造履歷表內容，若有發現虛構實情、違背法令或違反公序良俗，即不受本規約個人資料之保護，並應自負法律責任。<br><br>
+      （三）本人熟知所應徵之工作職缺為派遣契約工，並同意在未轉任正職前皆由邁斯朋管理顧問有限公司管理。<br><br>
+      （四）本人同意日後因工作業務需要，可配合貴公司進行工作、職務、班別、地點及廠區之調度，且同意配合季節性生產調度及工廠狀況增減工作時間，絕無異議。
+    </div>
+    <div id="declQuestions">
+      <div class="yn-row"><p>1. 是否曾在警政司法單位有違法之犯罪紀錄、訴訟事件？</p><div class="yn-group"><button class="yn-btn" onclick="setYN(this,'q1','Y')">是</button><button class="yn-btn" onclick="setYN(this,'q1','N')">否</button></div></div>
+      <div class="yn-row"><p>2. 過往工作中是否曾涉及勞資相關爭議或申訴？</p><div class="yn-group"><button class="yn-btn" onclick="setYN(this,'q2','Y')">是</button><button class="yn-btn" onclick="setYN(this,'q2','N')">否</button></div></div>
+      <div class="yn-row"><p>3. 是否具特殊身分（外籍人士 / 身心障礙手冊）？</p><div class="yn-group"><button class="yn-btn" onclick="setYN(this,'q3','Y')">是</button><button class="yn-btn" onclick="setYN(this,'q3','N')">否</button></div></div>
+      <div class="yn-row"><p>4. 是否患有重大、特殊、遺傳性、慢性疾病？</p><div class="yn-group"><button class="yn-btn" onclick="setYN(this,'q4','Y')">是</button><button class="yn-btn" onclick="setYN(this,'q4','N')">否</button></div></div>
+      <div class="yn-row"><p>5. 是否領有殘障手冊？</p><div class="yn-group"><button class="yn-btn" onclick="setYN(this,'q5','Y')">是</button><button class="yn-btn" onclick="setYN(this,'q5','N')">否</button></div></div>
+      <div class="yn-row"><p>6. 是否懷孕？（男性免填）</p><div class="yn-group"><button class="yn-btn" onclick="setYN(this,'q6','Y')">是</button><button class="yn-btn" onclick="setYN(this,'q6','N')">否</button></div></div>
+      <div class="yn-row"><p>7. 是否有嚼檳榔習慣？</p><div class="yn-group"><button class="yn-btn" onclick="setYN(this,'q7','Y')">是</button><button class="yn-btn" onclick="setYN(this,'q7','N')">否</button></div></div>
+      <div class="yn-row"><p>8. 是否有良民證？（有請備妥提供）</p><div class="yn-group"><button class="yn-btn" onclick="setYN(this,'q8','Y')">是</button><button class="yn-btn" onclick="setYN(this,'q8','N')">否</button></div></div>
+    </div>
+    <div style="margin-top:14px">
+      <label class="pill" id="agreePill" style="border-radius:8px;width:100%;justify-content:flex-start">
+        <input type="checkbox" id="agreeChk">
+        <span>本人已詳閱並同意上述所有聲明內容<span class="req"> *</span></span>
+      </label>
+    </div>
+  </div>
+
+  <!-- Step 6 -->
+  <div class="section-card" id="step6">
+    <div class="section-title"><span class="section-num">6</span> 緊急聯絡人 <span class="en-label">Emergency Contact</span></div>
+    <div class="field-row col3">
+      <div class="field-group"><label class="fl">姓名<span class="req">*</span></label><input type="text" id="f_ec_name" placeholder="緊急聯絡人姓名"></div>
+      <div class="field-group"><label class="fl">關係<span class="req">*</span></label><input type="text" id="f_ec_rel" placeholder="例：父母、配偶"></div>
+      <div class="field-group"><label class="fl">聯絡電話<span class="req">*</span></label><input type="tel" id="f_ec_phone" placeholder="09XX-XXX-XXX"></div>
+    </div>
+    <div style="margin-top:12px;padding:12px 14px;background:#f8f9fa;border-radius:var(--radius-sm);border:1px solid var(--border);font-size:12px;color:var(--text2);line-height:1.8">
+      📋 請確認所有必填欄位（<span style="color:var(--red)">*</span>）均已填寫後再按「送出申請」。<br>
+      📞 聯絡電話：02-66050545｜📍 114台北市內湖區成功路二段235號2樓
+    </div>
+  </div>
+
+  <!-- Success -->
+  <div class="success-wrap" id="successWrap">
+    <div class="success-icon">
+      <svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>
+    </div>
+    <h2>申請表已成功送出！</h2>
+    <p style="margin-top:.5rem">感謝您填寫邁斯朋智取店求職申請表，<br>我們將盡快與您聯繫。</p>
+    <p style="margin-top:1.5rem;font-size:12px;color:var(--text3)">聯絡電話：02-66050545</p>
+  </div>
+
+</div><!-- /main -->
+
+<!-- Nav Bar -->
+<div class="nav-bar" id="navBar">
+  <button class="btn hidden" id="btnBack" onclick="goBack()">
+    ← 上一步
+  </button>
+  <span class="nav-step" id="navStep">1 / 6</span>
+  <button class="btn primary" id="btnNext" onclick="goNext()">
+    下一步 →
+  </button>
+</div>
+
+<!-- Toast -->
+<div class="toast" id="toast"></div>
+
+<!-- Loading Overlay -->
+<div class="overlay" id="overlay">
+  <div class="spinner"></div>
+  <span>資料送出中，請稍候...</span>
+</div>
+
+<script>
+// ================================================================
+// ⚙️  設定區：請填入您的 Google Apps Script Web App URL
+// ================================================================
+const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbwpoN0lw0AlaJd5_qjeBPhIrNELpDlzML9NfqqepUHl4umVJwD5gCH628uv-ai8HBp_fg/exec';
+// ================================================================
+
+const STEPS = ['step1','step2','step3','step4','step5','step6'];
+const STEP_NAMES = ['個人資訊','教育背景','班表資訊','工作經驗','聲明及同意','緊急聯絡人'];
+let cur = 0;
+const ynValues = {};
+
+// Build progress dots
+function buildProgress(){
+  const wrap = document.getElementById('progressSteps');
+  STEPS.forEach((_, i) => {
+    const d = document.createElement('div');
+    d.className = 'ps';
+    d.id = 'psdot' + i;
+    d.innerHTML = `<div class="ps-dot">${i+1}</div><span class="ps-lbl">${STEP_NAMES[i]}</span>`;
+    wrap.appendChild(d);
+  });
+}
+
+function updateProgress(){
+  STEPS.forEach((s, i) => {
+    document.getElementById(s).classList.toggle('active', i === cur);
+    const dot = document.getElementById('psdot' + i);
+    dot.className = 'ps' + (i < cur ? ' done' : i === cur ? ' active' : '');
+    if(i < cur) dot.querySelector('.ps-dot').innerHTML = '✓';
+    else dot.querySelector('.ps-dot').textContent = i + 1;
+  });
+  document.getElementById('navStep').textContent = (cur+1) + ' / ' + STEPS.length;
+  document.getElementById('btnBack').className = cur === 0 ? 'btn hidden' : 'btn';
+  const nb = document.getElementById('btnNext');
+  if(cur === STEPS.length - 1){
+    nb.textContent = '送出申請 ✓';
+    nb.className = 'btn primary';
+  } else {
+    nb.textContent = '下一步 →';
+    nb.className = 'btn primary';
+  }
+}
+
+// Pill checkboxes
+document.querySelectorAll('.check-pills .pill input').forEach(cb => {
+  cb.addEventListener('change', () => {
+    cb.closest('.pill').classList.toggle('checked', cb.checked);
+  });
+});
+document.getElementById('agreeChk').addEventListener('change', function(){
+  document.getElementById('agreePill').classList.toggle('checked', this.checked);
+});
+
+function setYN(btn, name, val){
+  ynValues[name] = val;
+  const grp = btn.closest('.yn-group');
+  grp.querySelectorAll('.yn-btn').forEach(b => b.className = 'yn-btn');
+  btn.className = 'yn-btn ' + (val === 'Y' ? 'sel-y' : 'sel-n');
+}
+
+function showToast(msg){
+  const t = document.getElementById('toast');
+  t.textContent = msg;
+  t.classList.add('show');
+  setTimeout(() => t.classList.remove('show'), 2800);
+}
+
+function validate(){
+  if(cur === 0){
+    const shifts = [...document.querySelectorAll('[name=shift]:checked')];
+    if(!shifts.length){ showToast('請勾選應徵班別'); return false; }
+    if(!document.getElementById('f_name').value.trim()){ showToast('請填寫中文姓名'); return false; }
+    if(!document.getElementById('f_phone').value.trim()){ showToast('請填寫手機號碼'); return false; }
+    if(!document.getElementById('f_email').value.trim()){ showToast('請填寫電子信箱'); return false; }
+    if(!document.getElementById('f_address').value.trim()){ showToast('請填寫通訊地址'); return false; }
+  }
+  if(cur === 4){
+    if(!document.getElementById('agreeChk').checked){ showToast('請勾選同意聲明'); return false; }
+  }
+  if(cur === 5){
+    if(!document.getElementById('f_ec_name').value.trim()){ showToast('請填寫緊急聯絡人姓名'); return false; }
+    if(!document.getElementById('f_ec_phone').value.trim()){ showToast('請填寫緊急聯絡人電話'); return false; }
+  }
+  return true;
+}
+
+function goNext(){
+  if(!validate()) return;
+  if(cur === STEPS.length - 1){ submitForm(); return; }
+  cur++;
+  updateProgress();
+  window.scrollTo({ top:0, behavior:'smooth' });
+}
+function goBack(){
+  cur = Math.max(0, cur - 1);
+  updateProgress();
+  window.scrollTo({ top:0, behavior:'smooth' });
+}
+
+function collectData(){
+  const days = ['一','二','三','四','五','六','日'];
+  const getShiftDays = shift => {
+    const cbs = document.querySelectorAll(`[data-shift="${shift}"]:checked`);
+    return [...cbs].map(c => days[parseInt(c.dataset.day)-1]).join('、') || '無';
+  };
+  return {
+    '填表時間': new Date().toLocaleString('zh-TW'),
+    '應徵班別': [...document.querySelectorAll('[name=shift]:checked')].map(c=>c.value).join('、'),
+    '中文姓名': document.getElementById('f_name').value,
+    '國籍': document.getElementById('f_nationality').value,
+    '性別': document.getElementById('f_gender').value,
+    '出生日期': document.getElementById('f_birth').value,
+    '身分證字號': document.getElementById('f_id').value,
+    '身高': document.getElementById('f_height').value,
+    '體重': document.getElementById('f_weight').value,
+    '手機': document.getElementById('f_phone').value,
+    '電子信箱': document.getElementById('f_email').value,
+    '通訊地址': document.getElementById('f_address').value,
+    '學歷1期間': document.getElementById('f_edu1_period').value,
+    '學歷1學校': document.getElementById('f_edu1_school').value,
+    '學歷1科系': document.getElementById('f_edu1_dept').value,
+    '學歷2期間': document.getElementById('f_edu2_period').value,
+    '學歷2學校': document.getElementById('f_edu2_school').value,
+    '學歷2科系': document.getElementById('f_edu2_dept').value,
+    '早班可上班日': getShiftDays('morning'),
+    '早班偏好時段': document.getElementById('f_morning_pref').value,
+    '晚班可上班日': getShiftDays('evening'),
+    '晚班可提前': ynValues['early'] || '',
+    '晚班可延後': ynValues['late'] || '',
+    '夜班可上班日': getShiftDays('night'),
+    '預計報到日': document.getElementById('f_start_date').value,
+    '交通工具': document.getElementById('f_transport').value,
+    '持有本人帳戶': ynValues['acct'] || '',
+    '可支援門市': document.getElementById('f_support_store').value,
+    '班表備註': document.getElementById('f_schedule_note').value,
+    '前公司': document.getElementById('f_co_name').value,
+    '工作地點': document.getElementById('f_co_location').value,
+    '職位': document.getElementById('f_position').value,
+    '在職期間': document.getElementById('f_period').value,
+    '離職薪資': document.getElementById('f_salary').value,
+    '離職原因': document.getElementById('f_leave_reason').value,
+    '工作職責': document.getElementById('f_job_desc').value,
+    '聲明Q1犯罪': ynValues['q1']||'',
+    '聲明Q2勞資': ynValues['q2']||'',
+    '聲明Q3特殊身分': ynValues['q3']||'',
+    '聲明Q4疾病': ynValues['q4']||'',
+    '聲明Q5殘障': ynValues['q5']||'',
+    '聲明Q6懷孕': ynValues['q6']||'',
+    '聲明Q7檳榔': ynValues['q7']||'',
+    '聲明Q8良民證': ynValues['q8']||'',
+    '緊急聯絡人姓名': document.getElementById('f_ec_name').value,
+    '緊急聯絡人關係': document.getElementById('f_ec_rel').value,
+    '緊急聯絡人電話': document.getElementById('f_ec_phone').value,
+  };
+}
+
+function submitForm(){
+  if(SCRIPT_URL === 'https://script.google.com/macros/s/AKfycbwpoN0lw0AlaJd5_qjeBPhIrNELpDlzML9NfqqepUHl4umVJwD5gCH628uv-ai8HBp_fg/exec'){
+    // Demo mode: no real URL set
+    document.getElementById('overlay').classList.add('show');
+    setTimeout(()=>{
+      document.getElementById('overlay').classList.remove('show');
+      document.getElementById('navBar').style.display='none';
+      document.getElementById('progressSteps').closest('.progress-wrap').style.display='none';
+      document.querySelectorAll('.section-card').forEach(c=>c.style.display='none');
+      document.getElementById('successWrap').classList.add('show');
+    }, 1500);
+    return;
+  }
+  document.getElementById('overlay').classList.add('show');
+  const data = collectData();
+  fetch(SCRIPT_URL, {
+    method: 'POST',
+    mode: 'no-cors',
+    headers: {'Content-Type':'application/json'},
+    body: JSON.stringify(data)
+  }).then(()=>{
+    document.getElementById('overlay').classList.remove('show');
+    document.getElementById('navBar').style.display='none';
+    document.getElementById('progressSteps').closest('.progress-wrap').style.display='none';
+    document.querySelectorAll('.section-card').forEach(c=>c.style.display='none');
+    document.getElementById('successWrap').classList.add('show');
+  }).catch(()=>{
+    document.getElementById('overlay').classList.remove('show');
+    showToast('送出失敗，請稍後再試或聯繫管理員');
+  });
+}
+
+buildProgress();
+updateProgress();
+</script>
+
+<!--
+=======================================================
+  📋 Google Sheets 設定說明（請操作員閱讀）
+=======================================================
+
+步驟一：建立 Google Sheets
+  1. 開啟 Google Sheets，新建一份試算表
+  2. 命名為「MSP 智取店求職申請」
+
+步驟二：建立 Apps Script
+  1. 在試算表頁面，點選「擴充功能」→「Apps Script」
+  2. 刪除原有程式碼，貼上以下程式碼：
+
+  ─────────────────────────────────────────────────────
+  function doPost(e) {
+    try {
+      var sheet = SpreadsheetApp.getActiveSpreadsheet().getActiveSheet();
+      var data = JSON.parse(e.postData.contents);
+      var keys = Object.keys(data);
+      
+      // 若第一列是空的，先寫入標題列
+      if (sheet.getLastRow() === 0) {
+        sheet.appendRow(keys);
+      }
+      
+      sheet.appendRow(keys.map(k => data[k]));
+      
+      return ContentService
+        .createTextOutput(JSON.stringify({status:'ok'}))
+        .setMimeType(ContentService.MimeType.JSON);
+    } catch(err) {
+      return ContentService
+        .createTextOutput(JSON.stringify({status:'error', msg: err.toString()}))
+        .setMimeType(ContentService.MimeType.JSON);
+    }
+  }
+  ─────────────────────────────────────────────────────
+
+步驟三：部署為 Web App
+  1. 點選「部署」→「新增部署作業」
+  2. 類型選「網頁應用程式」
+  3. 執行身分：「我」
+  4. 存取權：「所有人（包括匿名）」
+  5. 點選「部署」，複製生成的網址
+
+步驟四：填入 HTML
+  1. 用文字編輯器開啟此 HTML 檔案
+  2. 找到這一行：
+       const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbwpoN0lw0AlaJd5_qjeBPhIrNELpDlzML9NfqqepUHl4umVJwD5gCH628uv-ai8HBp_fg/exec';
+  3. 將 https://script.google.com/macros/s/AKfycbwpoN0lw0AlaJd5_qjeBPhIrNELpDlzML9NfqqepUHl4umVJwD5gCH628uv-ai8HBp_fg/exec 替換成剛才複製的網址
+
+完成後，每次有人填表送出，資料就會自動寫入 Google Sheets！
+=======================================================
+-->
+
+</body>
+</html>
