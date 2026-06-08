@@ -128,7 +128,7 @@ input::placeholder,textarea::placeholder{color:var(--text3)}
       <div class="s-icon">S</div>
       <span class="s-text">Shopee 蝦皮購物</span>
     </div>
-    <span class="header-banner-sub">門市工讀求職申請</span>
+    <span class="header-banner-sub">求職申請</span>
   </div>
   <div class="header-sub">
     <div class="header-icon"><svg viewBox="0 0 24 24"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg></div>
@@ -171,6 +171,11 @@ input::placeholder,textarea::placeholder{color:var(--text3)}
         <input type="radio" name="store_type" value="temp">
         <div class="store-card-title">⏰ 短期工讀</div>
         <div class="store-card-desc">雙北/桃園少數區域限定<br>※蝦皮短期派遣※</div>
+      </label>
+      <label class="store-card" onclick="selectStore('hq')">
+        <input type="radio" name="store_type" value="hq">
+        <div class="store-card-title">🏢 總部職務</div>
+        <div class="store-card-desc">蝦皮台灣總部<br>行政／客服／營運等職缺</div>
       </label>
     </div>
   </div>
@@ -255,11 +260,33 @@ input::placeholder,textarea::placeholder{color:var(--text3)}
     </div>
   </div>
 
+  <!-- 總部職務 -->
+  <div class="shift-panel" id="panel-hq">
+    <div class="shift-note">📌 請於下方「應徵門市或地區」填寫您應徵的總部職缺名稱。</div>
+    <div class="field-group" style="margin-top:10px">
+      <label class="fl">應徵職缺<span class="req">*</span></label>
+      <div class="shift-options">
+        <label class="shift-opt"><input type="checkbox" name="shift" value="總部-行政助理">
+          <div><div class="shift-opt-label">行政助理</div></div>
+        </label>
+        <label class="shift-opt"><input type="checkbox" name="shift" value="總部-客服專員">
+          <div><div class="shift-opt-label">客服專員</div></div>
+        </label>
+        <label class="shift-opt"><input type="checkbox" name="shift" value="總部-營運專員">
+          <div><div class="shift-opt-label">營運專員</div></div>
+        </label>
+        <label class="shift-opt"><input type="checkbox" name="shift" value="總部-其他職缺">
+          <div><div class="shift-opt-label">其他（請於門市/地區欄說明）</div></div>
+        </label>
+      </div>
+    </div>
+  </div>
+
   <div class="field-row col1" style="margin-top:14px">
     <div class="field-group">
       <label class="fl">應徵門市或地區<span class="req">*</span></label>
-      <input type="text" id="f_store_area" placeholder="例：台中市西屯區 或 指定門市名稱">
-      <div style="font-size:11px;color:var(--text3);margin-top:3px">請填寫希望應徵的門市名稱或所在地區（縣市+區）</div>
+      <input type="text" id="f_store_area" placeholder="例：台中市西屯區 或 指定門市名稱；總部請填職缺名稱">
+      <div style="font-size:11px;color:var(--text3);margin-top:3px">請填寫希望應徵的門市名稱或所在地區（縣市+區）；如應徵總部則填寫總部職缺名稱</div>
     </div>
   </div>
 </div>
@@ -276,12 +303,12 @@ input::placeholder,textarea::placeholder{color:var(--text3)}
     <div class="field-group"><label class="fl">性別<span class="req">*</span></label>
       <select id="f_gender"><option value="">請選擇</option><option>男</option><option>女</option><option>其他</option></select>
     </div>
-    <div class="field-group"><label class="fl">出生日期<span class="req">*</span></label><input type="date" id="f_birth"></div>
-    <div class="field-group"><label class="fl">身分證字號<span class="req">*</span></label><input type="text" id="f_id" placeholder="A123456789" maxlength="10"></div>
+    <div class="field-group" id="wrap_birth"><label class="fl">出生日期<span class="req" id="req_birth">*</span></label><input type="date" id="f_birth"></div>
+    <div class="field-group" id="wrap_id"><label class="fl">身分證字號<span class="req" id="req_id">*</span></label><input type="text" id="f_id" placeholder="A123456789" maxlength="10"></div>
   </div>
   <div class="field-row col2">
-    <div class="field-group"><label class="fl">身高 (cm)<span class="req">*</span></label><input type="number" id="f_height" placeholder="165"></div>
-    <div class="field-group"><label class="fl">體重 (kg)<span class="req">*</span></label><input type="number" id="f_weight" placeholder="60"></div>
+    <div class="field-group" id="wrap_height"><label class="fl">身高 (cm)<span class="req" id="req_height">*</span></label><input type="number" id="f_height" placeholder="165"></div>
+    <div class="field-group" id="wrap_weight"><label class="fl">體重 (kg)<span class="req" id="req_weight">*</span></label><input type="number" id="f_weight" placeholder="60"></div>
   </div>
   <div class="field-row col2">
     <div class="field-group"><label class="fl">手機<span class="req">*</span></label><input type="tel" id="f_phone" placeholder="09XX-XXX-XXX"></div>
@@ -332,7 +359,7 @@ input::placeholder,textarea::placeholder{color:var(--text3)}
 <!-- STEP 4: 可上班時間 -->
 <div class="section-card" id="step4">
   <div class="section-title"><span class="section-num">4</span> 可上班時間 <span class="en-label">Availability</span></div>
-  <div class="field-group">
+  <div class="field-group" id="sched-grid-wrap">
     <label class="fl">可上班日<span class="req">*</span></label>
     <div style="font-size:11px;color:var(--text3);margin-bottom:4px">請勾選週一至週日可上班天數（可多選）</div>
     <div class="sched-grid">
@@ -347,14 +374,14 @@ input::placeholder,textarea::placeholder{color:var(--text3)}
   </div>
   <div class="field-row col2" style="margin-top:4px">
     <div class="field-group"><label class="fl">預計報到日期<span class="req">*</span></label><input type="date" id="f_start_date"></div>
-    <div class="field-group"><label class="fl">交通工具<span class="req">*</span></label><input type="text" id="f_transport" placeholder="例：機車、捷運、自行車、開車"></div>
+    <div class="field-group" id="transport-wrap"><label class="fl">交通工具<span class="req">*</span></label><input type="text" id="f_transport" placeholder="例：機車、捷運、自行車、開車"></div>
   </div>
   <div class="field-row col2">
     <div class="field-group">
       <label class="fl">是否持有本人銀行帳戶<span class="req">*</span></label>
       <div class="yn-group"><button class="yn-btn" onclick="setYN(this,'acct','Y')">是</button><button class="yn-btn" onclick="setYN(this,'acct','N')">否</button></div>
     </div>
-    <div class="field-group"><label class="fl">可彈性支援同區域門市</label><input type="text" id="f_support_store" placeholder="填門市名稱，無則空白"></div>
+    <div class="field-group" id="support-store-wrap"><label class="fl">可彈性支援同區域門市</label><input type="text" id="f_support_store" placeholder="填門市名稱，無則空白"></div>
   </div>
   <div class="field-row col1">
     <div class="field-group"><label class="fl">時間備註</label><textarea id="f_schedule_note" placeholder="其他時間說明，例如：每週三固定不能上班..."></textarea></div>
@@ -413,9 +440,9 @@ input::placeholder,textarea::placeholder{color:var(--text3)}
 <div class="section-card" id="step7">
   <div class="section-title"><span class="section-num">7</span> 緊急聯絡人 <span class="en-label">Emergency Contact</span></div>
   <div class="field-row col3">
-    <div class="field-group"><label class="fl">姓名<span class="req">*</span></label><input type="text" id="f_ec_name" placeholder="緊急聯絡人姓名"></div>
-    <div class="field-group"><label class="fl">關係<span class="req">*</span></label><input type="text" id="f_ec_rel" placeholder="例：父母、配偶"></div>
-    <div class="field-group"><label class="fl">聯絡電話<span class="req">*</span></label><input type="tel" id="f_ec_phone" placeholder="09XX-XXX-XXX"></div>
+    <div class="field-group"><label class="fl">姓名</label><input type="text" id="f_ec_name" placeholder="緊急聯絡人姓名"></div>
+    <div class="field-group"><label class="fl">關係</label><input type="text" id="f_ec_rel" placeholder="例：父母、配偶"></div>
+    <div class="field-group"><label class="fl">聯絡電話</label><input type="tel" id="f_ec_phone" placeholder="09XX-XXX-XXX"></div>
   </div>
   <div class="warn-box">
     ⚠️ 送出前請確認以下資訊填寫完整：<br>
@@ -438,7 +465,7 @@ input::placeholder,textarea::placeholder{color:var(--text3)}
 <div class="success-wrap" id="successWrap">
   <div class="success-icon"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></div>
   <h2>申請表已成功送出！🎉</h2>
-  <p style="margin-top:.5rem;color:var(--text2)">感謝您填寫蝦皮門市工讀求職申請表</p>
+  <p style="margin-top:.5rem;color:var(--text2)">感謝您填寫蝦皮求職申請表</p>
   <div class="success-notice">
     📱 <strong>下一步請務必完成：</strong><br>
     請至 Line 官方帳號搜尋 <strong>@pqw3539q</strong> 加入並傳訊給 <strong>Aiyu</strong><br>
@@ -472,9 +499,25 @@ function selectStore(type){
   document.querySelectorAll('.shift-panel').forEach(p=>p.classList.remove('show'));
   const panel=document.getElementById('panel-'+type);
   if(panel)panel.classList.add('show');
-  // uncheck all shifts from other panels
   document.querySelectorAll('[name=shift]').forEach(cb=>cb.checked=false);
   document.querySelectorAll('.shift-opt').forEach(o=>o.classList.remove('checked'));
+
+  // 總部職務：隱藏/顯示特定欄位
+  const isHQ = type === 'hq';
+  // 可上班日、可支援門市
+  const schedWrap = document.getElementById('sched-grid-wrap');
+  const supportWrap = document.getElementById('support-store-wrap');
+  if(schedWrap) schedWrap.closest('.field-group') ? schedWrap.style.display = isHQ ? 'none' : '' : null;
+  if(schedWrap) schedWrap.style.display = isHQ ? 'none' : '';
+  if(supportWrap) supportWrap.style.display = isHQ ? 'none' : '';
+  // 交通工具 * 顯示/隱藏
+  const transportLabel = document.querySelector('#transport-wrap label.fl');
+  if(transportLabel) transportLabel.innerHTML = isHQ ? '交通工具' : '交通工具<span class="req">*</span>';
+  // 出生日期、身分證、身高、體重的 * 顯示/隱藏
+  ['birth','id','height','weight'].forEach(field => {
+    const req = document.getElementById('req_' + field);
+    if(req) req.style.display = isHQ ? 'none' : 'inline';
+  });
 }
 
 function buildProgress(){
@@ -520,19 +563,20 @@ function showToast(msg){
   setTimeout(()=>t.classList.remove('show'),3000);
 }
 function validate(){
+  const isHQ = selectedStore === 'hq';
   if(cur===0){
     if(!selectedStore){showToast('⚠️ 請選擇應徵店別');return false;}
-    if(![...document.querySelectorAll('[name=shift]:checked')].length){showToast('⚠️ 請勾選應徵班別');return false;}
+    if(![...document.querySelectorAll('[name=shift]:checked')].length){showToast('⚠️ 請勾選應徵班別/職缺');return false;}
     if(!document.getElementById('f_store_area').value.trim()){showToast('⚠️ 請填寫應徵門市或地區');return false;}
   }
   if(cur===1){
     if(!document.getElementById('f_name').value.trim()){showToast('⚠️ 請填寫中文姓名');return false;}
     if(!document.getElementById('f_nationality').value.trim()){showToast('⚠️ 請填寫國籍');return false;}
     if(!document.getElementById('f_gender').value){showToast('⚠️ 請選擇性別');return false;}
-    if(!document.getElementById('f_birth').value){showToast('⚠️ 請填寫出生日期');return false;}
-    if(!document.getElementById('f_id').value.trim()){showToast('⚠️ 請填寫身分證字號');return false;}
-    if(!document.getElementById('f_height').value.trim()){showToast('⚠️ 請填寫身高');return false;}
-    if(!document.getElementById('f_weight').value.trim()){showToast('⚠️ 請填寫體重');return false;}
+    if(!isHQ && !document.getElementById('f_birth').value){showToast('⚠️ 請填寫出生日期');return false;}
+    if(!isHQ && !document.getElementById('f_id').value.trim()){showToast('⚠️ 請填寫身分證字號');return false;}
+    if(!isHQ && !document.getElementById('f_height').value.trim()){showToast('⚠️ 請填寫身高');return false;}
+    if(!isHQ && !document.getElementById('f_weight').value.trim()){showToast('⚠️ 請填寫體重');return false;}
     if(!document.getElementById('f_phone').value.trim()){showToast('⚠️ 請填寫手機號碼');return false;}
     if(!document.getElementById('f_email').value.trim()){showToast('⚠️ 請填寫電子信箱');return false;}
     if(!document.getElementById('f_address').value.trim()){showToast('⚠️ 請填寫通訊地址');return false;}
@@ -545,10 +589,12 @@ function validate(){
     if(!document.getElementById('f_edu1_dept').value.trim()){showToast('⚠️ 請填寫科系別');return false;}
   }
   if(cur===3){
-    const days=[...document.querySelectorAll('.sched-grid [data-day]:checked')];
-    if(!days.length){showToast('⚠️ 請勾選至少一天可上班日');return false;}
+    if(!isHQ){
+      const days=[...document.querySelectorAll('.sched-grid [data-day]:checked')];
+      if(!days.length){showToast('⚠️ 請勾選至少一天可上班日');return false;}
+    }
     if(!document.getElementById('f_start_date').value){showToast('⚠️ 請填寫預計報到日期');return false;}
-    if(!document.getElementById('f_transport').value.trim()){showToast('⚠️ 請填寫交通工具');return false;}
+    if(!isHQ && !document.getElementById('f_transport').value.trim()){showToast('⚠️ 請填寫交通工具');return false;}
     if(!ynValues['acct']){showToast('⚠️ 請回答是否持有本人帳戶');return false;}
   }
   if(cur===4){
@@ -568,17 +614,13 @@ function validate(){
     if(!ynValues['q8']){showToast('⚠️ 聲明第8題尚未作答');return false;}
     if(!document.getElementById('agreeChk').checked){showToast('⚠️ 請勾選同意聲明後再繼續');return false;}
   }
-  if(cur===6){
-    if(!document.getElementById('f_ec_name').value.trim()){showToast('⚠️ 請填寫緊急聯絡人姓名');return false;}
-    if(!document.getElementById('f_ec_rel').value.trim()){showToast('⚠️ 請填寫緊急聯絡人關係');return false;}
-    if(!document.getElementById('f_ec_phone').value.trim()){showToast('⚠️ 請填寫緊急聯絡人電話');return false;}
-  }
+
   return true;
 }
 function renderPreview(){
   const days=['一','二','三','四','五','六','日'];
   const avail=[...document.querySelectorAll('.sched-grid [data-day]:checked')].map(c=>days[parseInt(c.dataset.day)-1]).join('、')||'（未勾選）';
-  const storeMap={manned:'🏪 有人店',smart:'🤖 智取店',parcel:'📦 寄件店',temp:'⏰ 短期工讀'};
+  const storeMap={manned:'🏪 有人店',smart:'🤖 智取店',parcel:'📦 寄件店',temp:'⏰ 短期工讀',hq:'🏢 總部職務'};
   const shifts=[...document.querySelectorAll('[name=shift]:checked')].map(c=>c.value).join('、')||'（未勾選）';
   const shopeeExp=(document.querySelector('[name=shopee_exp]:checked')||{}).value||'（未填）';
 
@@ -657,7 +699,7 @@ function goBack(){cur=Math.max(0,cur-1);updateProgress();window.scrollTo({top:0,
 function collectData(){
   const days=['一','二','三','四','五','六','日'];
   const avail=[...document.querySelectorAll('.sched-grid [data-day]:checked')].map(c=>days[parseInt(c.dataset.day)-1]).join('、')||'無';
-  const storeMap={manned:'有人店',smart:'智取店',parcel:'寄件店',temp:'短期工讀'};
+  const storeMap={manned:'有人店',smart:'智取店',parcel:'寄件店',temp:'短期工讀',hq:'總部職務'};
   return{
     '填表時間':new Date().toLocaleString('zh-TW'),
     '應徵店別':storeMap[selectedStore]||'',
