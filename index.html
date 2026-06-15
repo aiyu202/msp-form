@@ -359,17 +359,522 @@ input::placeholder,textarea::placeholder{color:var(--text3)}
 <!-- STEP 4: 可上班時間 -->
 <div class="section-card" id="step4">
   <div class="section-title"><span class="section-num">4</span> 可上班時間 <span class="en-label">Availability</span></div>
-  <div class="field-group" id="sched-grid-wrap">
-    <label class="fl">可上班日<span class="req">*</span></label>
-    <div style="font-size:11px;color:var(--text3);margin-bottom:4px">請勾選週一至週日可上班天數（可多選）</div>
-    <div class="sched-grid">
-      <div class="sched-day"><span>一</span><input type="checkbox" data-day="1"></div>
-      <div class="sched-day"><span>二</span><input type="checkbox" data-day="2"></div>
-      <div class="sched-day"><span>三</span><input type="checkbox" data-day="3"></div>
-      <div class="sched-day"><span>四</span><input type="checkbox" data-day="4"></div>
-      <div class="sched-day"><span>五</span><input type="checkbox" data-day="5"></div>
-      <div class="sched-day"><span>六</span><input type="checkbox" data-day="6"></div>
-      <div class="sched-day"><span>日</span><input type="checkbox" data-day="7"></div>
+  <div id="sched-grid-wrap">
+    <div class="field-group" style="margin-bottom:8px">
+      <label class="fl">最早上班時間<span class="req">*</span></label>
+      <div style="font-size:11px;color:var(--text3);margin-bottom:6px">請選擇每天最早可到班時間</div>
+      <div style="display:grid;grid-template-columns:repeat(7,1fr);gap:6px">
+      <div class="field-group" style="text-align:center"><label class="fl" style="text-align:center;justify-content:center">週一</label><select id="f_early_mon" style="font-size:12px;padding:4px 6px">
+          <option value="請選擇">請選擇</option>
+          <option value="07:00">07:00</option>
+          <option value="07:30">07:30</option>
+          <option value="08:00">08:00</option>
+          <option value="08:30">08:30</option>
+          <option value="09:00">09:00</option>
+          <option value="09:30">09:30</option>
+          <option value="10:00">10:00</option>
+          <option value="10:30">10:30</option>
+          <option value="11:00">11:00</option>
+          <option value="11:30">11:30</option>
+          <option value="12:00">12:00</option>
+          <option value="12:30">12:30</option>
+          <option value="13:00">13:00</option>
+          <option value="13:30">13:30</option>
+          <option value="14:00">14:00</option>
+          <option value="14:30">14:30</option>
+          <option value="15:00">15:00</option>
+          <option value="15:30">15:30</option>
+          <option value="16:00">16:00</option>
+          <option value="16:30">16:30</option>
+          <option value="17:00">17:00</option>
+          <option value="17:30">17:30</option>
+          <option value="18:00">18:00</option>
+          <option value="18:30">18:30</option>
+          <option value="19:00">19:00</option>
+          <option value="19:30">19:30</option>
+          <option value="20:00">20:00</option>
+          <option value="20:30">20:30</option>
+          <option value="21:00">21:00</option>
+          <option value="21:30">21:30</option>
+          <option value="22:00">22:00</option>
+          <option value="22:30">22:30</option>
+          <option value="23:00">23:00</option>
+        </select></div>
+      <div class="field-group" style="text-align:center"><label class="fl" style="text-align:center;justify-content:center">週二</label><select id="f_early_tue" style="font-size:12px;padding:4px 6px">
+          <option value="請選擇">請選擇</option>
+          <option value="07:00">07:00</option>
+          <option value="07:30">07:30</option>
+          <option value="08:00">08:00</option>
+          <option value="08:30">08:30</option>
+          <option value="09:00">09:00</option>
+          <option value="09:30">09:30</option>
+          <option value="10:00">10:00</option>
+          <option value="10:30">10:30</option>
+          <option value="11:00">11:00</option>
+          <option value="11:30">11:30</option>
+          <option value="12:00">12:00</option>
+          <option value="12:30">12:30</option>
+          <option value="13:00">13:00</option>
+          <option value="13:30">13:30</option>
+          <option value="14:00">14:00</option>
+          <option value="14:30">14:30</option>
+          <option value="15:00">15:00</option>
+          <option value="15:30">15:30</option>
+          <option value="16:00">16:00</option>
+          <option value="16:30">16:30</option>
+          <option value="17:00">17:00</option>
+          <option value="17:30">17:30</option>
+          <option value="18:00">18:00</option>
+          <option value="18:30">18:30</option>
+          <option value="19:00">19:00</option>
+          <option value="19:30">19:30</option>
+          <option value="20:00">20:00</option>
+          <option value="20:30">20:30</option>
+          <option value="21:00">21:00</option>
+          <option value="21:30">21:30</option>
+          <option value="22:00">22:00</option>
+          <option value="22:30">22:30</option>
+          <option value="23:00">23:00</option>
+        </select></div>
+      <div class="field-group" style="text-align:center"><label class="fl" style="text-align:center;justify-content:center">週三</label><select id="f_early_wed" style="font-size:12px;padding:4px 6px">
+          <option value="請選擇">請選擇</option>
+          <option value="07:00">07:00</option>
+          <option value="07:30">07:30</option>
+          <option value="08:00">08:00</option>
+          <option value="08:30">08:30</option>
+          <option value="09:00">09:00</option>
+          <option value="09:30">09:30</option>
+          <option value="10:00">10:00</option>
+          <option value="10:30">10:30</option>
+          <option value="11:00">11:00</option>
+          <option value="11:30">11:30</option>
+          <option value="12:00">12:00</option>
+          <option value="12:30">12:30</option>
+          <option value="13:00">13:00</option>
+          <option value="13:30">13:30</option>
+          <option value="14:00">14:00</option>
+          <option value="14:30">14:30</option>
+          <option value="15:00">15:00</option>
+          <option value="15:30">15:30</option>
+          <option value="16:00">16:00</option>
+          <option value="16:30">16:30</option>
+          <option value="17:00">17:00</option>
+          <option value="17:30">17:30</option>
+          <option value="18:00">18:00</option>
+          <option value="18:30">18:30</option>
+          <option value="19:00">19:00</option>
+          <option value="19:30">19:30</option>
+          <option value="20:00">20:00</option>
+          <option value="20:30">20:30</option>
+          <option value="21:00">21:00</option>
+          <option value="21:30">21:30</option>
+          <option value="22:00">22:00</option>
+          <option value="22:30">22:30</option>
+          <option value="23:00">23:00</option>
+        </select></div>
+      <div class="field-group" style="text-align:center"><label class="fl" style="text-align:center;justify-content:center">週四</label><select id="f_early_thu" style="font-size:12px;padding:4px 6px">
+          <option value="請選擇">請選擇</option>
+          <option value="07:00">07:00</option>
+          <option value="07:30">07:30</option>
+          <option value="08:00">08:00</option>
+          <option value="08:30">08:30</option>
+          <option value="09:00">09:00</option>
+          <option value="09:30">09:30</option>
+          <option value="10:00">10:00</option>
+          <option value="10:30">10:30</option>
+          <option value="11:00">11:00</option>
+          <option value="11:30">11:30</option>
+          <option value="12:00">12:00</option>
+          <option value="12:30">12:30</option>
+          <option value="13:00">13:00</option>
+          <option value="13:30">13:30</option>
+          <option value="14:00">14:00</option>
+          <option value="14:30">14:30</option>
+          <option value="15:00">15:00</option>
+          <option value="15:30">15:30</option>
+          <option value="16:00">16:00</option>
+          <option value="16:30">16:30</option>
+          <option value="17:00">17:00</option>
+          <option value="17:30">17:30</option>
+          <option value="18:00">18:00</option>
+          <option value="18:30">18:30</option>
+          <option value="19:00">19:00</option>
+          <option value="19:30">19:30</option>
+          <option value="20:00">20:00</option>
+          <option value="20:30">20:30</option>
+          <option value="21:00">21:00</option>
+          <option value="21:30">21:30</option>
+          <option value="22:00">22:00</option>
+          <option value="22:30">22:30</option>
+          <option value="23:00">23:00</option>
+        </select></div>
+      <div class="field-group" style="text-align:center"><label class="fl" style="text-align:center;justify-content:center">週五</label><select id="f_early_fri" style="font-size:12px;padding:4px 6px">
+          <option value="請選擇">請選擇</option>
+          <option value="07:00">07:00</option>
+          <option value="07:30">07:30</option>
+          <option value="08:00">08:00</option>
+          <option value="08:30">08:30</option>
+          <option value="09:00">09:00</option>
+          <option value="09:30">09:30</option>
+          <option value="10:00">10:00</option>
+          <option value="10:30">10:30</option>
+          <option value="11:00">11:00</option>
+          <option value="11:30">11:30</option>
+          <option value="12:00">12:00</option>
+          <option value="12:30">12:30</option>
+          <option value="13:00">13:00</option>
+          <option value="13:30">13:30</option>
+          <option value="14:00">14:00</option>
+          <option value="14:30">14:30</option>
+          <option value="15:00">15:00</option>
+          <option value="15:30">15:30</option>
+          <option value="16:00">16:00</option>
+          <option value="16:30">16:30</option>
+          <option value="17:00">17:00</option>
+          <option value="17:30">17:30</option>
+          <option value="18:00">18:00</option>
+          <option value="18:30">18:30</option>
+          <option value="19:00">19:00</option>
+          <option value="19:30">19:30</option>
+          <option value="20:00">20:00</option>
+          <option value="20:30">20:30</option>
+          <option value="21:00">21:00</option>
+          <option value="21:30">21:30</option>
+          <option value="22:00">22:00</option>
+          <option value="22:30">22:30</option>
+          <option value="23:00">23:00</option>
+        </select></div>
+      <div class="field-group" style="text-align:center"><label class="fl" style="text-align:center;justify-content:center">週六</label><select id="f_early_sat" style="font-size:12px;padding:4px 6px">
+          <option value="請選擇">請選擇</option>
+          <option value="07:00">07:00</option>
+          <option value="07:30">07:30</option>
+          <option value="08:00">08:00</option>
+          <option value="08:30">08:30</option>
+          <option value="09:00">09:00</option>
+          <option value="09:30">09:30</option>
+          <option value="10:00">10:00</option>
+          <option value="10:30">10:30</option>
+          <option value="11:00">11:00</option>
+          <option value="11:30">11:30</option>
+          <option value="12:00">12:00</option>
+          <option value="12:30">12:30</option>
+          <option value="13:00">13:00</option>
+          <option value="13:30">13:30</option>
+          <option value="14:00">14:00</option>
+          <option value="14:30">14:30</option>
+          <option value="15:00">15:00</option>
+          <option value="15:30">15:30</option>
+          <option value="16:00">16:00</option>
+          <option value="16:30">16:30</option>
+          <option value="17:00">17:00</option>
+          <option value="17:30">17:30</option>
+          <option value="18:00">18:00</option>
+          <option value="18:30">18:30</option>
+          <option value="19:00">19:00</option>
+          <option value="19:30">19:30</option>
+          <option value="20:00">20:00</option>
+          <option value="20:30">20:30</option>
+          <option value="21:00">21:00</option>
+          <option value="21:30">21:30</option>
+          <option value="22:00">22:00</option>
+          <option value="22:30">22:30</option>
+          <option value="23:00">23:00</option>
+        </select></div>
+      <div class="field-group" style="text-align:center"><label class="fl" style="text-align:center;justify-content:center">週日</label><select id="f_early_sun" style="font-size:12px;padding:4px 6px">
+          <option value="請選擇">請選擇</option>
+          <option value="07:00">07:00</option>
+          <option value="07:30">07:30</option>
+          <option value="08:00">08:00</option>
+          <option value="08:30">08:30</option>
+          <option value="09:00">09:00</option>
+          <option value="09:30">09:30</option>
+          <option value="10:00">10:00</option>
+          <option value="10:30">10:30</option>
+          <option value="11:00">11:00</option>
+          <option value="11:30">11:30</option>
+          <option value="12:00">12:00</option>
+          <option value="12:30">12:30</option>
+          <option value="13:00">13:00</option>
+          <option value="13:30">13:30</option>
+          <option value="14:00">14:00</option>
+          <option value="14:30">14:30</option>
+          <option value="15:00">15:00</option>
+          <option value="15:30">15:30</option>
+          <option value="16:00">16:00</option>
+          <option value="16:30">16:30</option>
+          <option value="17:00">17:00</option>
+          <option value="17:30">17:30</option>
+          <option value="18:00">18:00</option>
+          <option value="18:30">18:30</option>
+          <option value="19:00">19:00</option>
+          <option value="19:30">19:30</option>
+          <option value="20:00">20:00</option>
+          <option value="20:30">20:30</option>
+          <option value="21:00">21:00</option>
+          <option value="21:30">21:30</option>
+          <option value="22:00">22:00</option>
+          <option value="22:30">22:30</option>
+          <option value="23:00">23:00</option>
+        </select></div>
+      </div>
+    </div>
+    <div class="field-group" style="margin-top:12px">
+      <label class="fl">最晚下班時間<span class="req">*</span></label>
+      <div style="font-size:11px;color:var(--text3);margin-bottom:6px">請選擇每天最晚可下班時間</div>
+      <div style="display:grid;grid-template-columns:repeat(7,1fr);gap:6px">
+      <div class="field-group" style="text-align:center"><label class="fl" style="text-align:center;justify-content:center">週一</label><select id="f_late_mon" style="font-size:12px;padding:4px 6px">
+          <option value="請選擇">請選擇</option>
+          <option value="07:00">07:00</option>
+          <option value="07:30">07:30</option>
+          <option value="08:00">08:00</option>
+          <option value="08:30">08:30</option>
+          <option value="09:00">09:00</option>
+          <option value="09:30">09:30</option>
+          <option value="10:00">10:00</option>
+          <option value="10:30">10:30</option>
+          <option value="11:00">11:00</option>
+          <option value="11:30">11:30</option>
+          <option value="12:00">12:00</option>
+          <option value="12:30">12:30</option>
+          <option value="13:00">13:00</option>
+          <option value="13:30">13:30</option>
+          <option value="14:00">14:00</option>
+          <option value="14:30">14:30</option>
+          <option value="15:00">15:00</option>
+          <option value="15:30">15:30</option>
+          <option value="16:00">16:00</option>
+          <option value="16:30">16:30</option>
+          <option value="17:00">17:00</option>
+          <option value="17:30">17:30</option>
+          <option value="18:00">18:00</option>
+          <option value="18:30">18:30</option>
+          <option value="19:00">19:00</option>
+          <option value="19:30">19:30</option>
+          <option value="20:00">20:00</option>
+          <option value="20:30">20:30</option>
+          <option value="21:00">21:00</option>
+          <option value="21:30">21:30</option>
+          <option value="22:00">22:00</option>
+          <option value="22:30">22:30</option>
+          <option value="23:00">23:00</option>
+        </select></div>
+      <div class="field-group" style="text-align:center"><label class="fl" style="text-align:center;justify-content:center">週二</label><select id="f_late_tue" style="font-size:12px;padding:4px 6px">
+          <option value="請選擇">請選擇</option>
+          <option value="07:00">07:00</option>
+          <option value="07:30">07:30</option>
+          <option value="08:00">08:00</option>
+          <option value="08:30">08:30</option>
+          <option value="09:00">09:00</option>
+          <option value="09:30">09:30</option>
+          <option value="10:00">10:00</option>
+          <option value="10:30">10:30</option>
+          <option value="11:00">11:00</option>
+          <option value="11:30">11:30</option>
+          <option value="12:00">12:00</option>
+          <option value="12:30">12:30</option>
+          <option value="13:00">13:00</option>
+          <option value="13:30">13:30</option>
+          <option value="14:00">14:00</option>
+          <option value="14:30">14:30</option>
+          <option value="15:00">15:00</option>
+          <option value="15:30">15:30</option>
+          <option value="16:00">16:00</option>
+          <option value="16:30">16:30</option>
+          <option value="17:00">17:00</option>
+          <option value="17:30">17:30</option>
+          <option value="18:00">18:00</option>
+          <option value="18:30">18:30</option>
+          <option value="19:00">19:00</option>
+          <option value="19:30">19:30</option>
+          <option value="20:00">20:00</option>
+          <option value="20:30">20:30</option>
+          <option value="21:00">21:00</option>
+          <option value="21:30">21:30</option>
+          <option value="22:00">22:00</option>
+          <option value="22:30">22:30</option>
+          <option value="23:00">23:00</option>
+        </select></div>
+      <div class="field-group" style="text-align:center"><label class="fl" style="text-align:center;justify-content:center">週三</label><select id="f_late_wed" style="font-size:12px;padding:4px 6px">
+          <option value="請選擇">請選擇</option>
+          <option value="07:00">07:00</option>
+          <option value="07:30">07:30</option>
+          <option value="08:00">08:00</option>
+          <option value="08:30">08:30</option>
+          <option value="09:00">09:00</option>
+          <option value="09:30">09:30</option>
+          <option value="10:00">10:00</option>
+          <option value="10:30">10:30</option>
+          <option value="11:00">11:00</option>
+          <option value="11:30">11:30</option>
+          <option value="12:00">12:00</option>
+          <option value="12:30">12:30</option>
+          <option value="13:00">13:00</option>
+          <option value="13:30">13:30</option>
+          <option value="14:00">14:00</option>
+          <option value="14:30">14:30</option>
+          <option value="15:00">15:00</option>
+          <option value="15:30">15:30</option>
+          <option value="16:00">16:00</option>
+          <option value="16:30">16:30</option>
+          <option value="17:00">17:00</option>
+          <option value="17:30">17:30</option>
+          <option value="18:00">18:00</option>
+          <option value="18:30">18:30</option>
+          <option value="19:00">19:00</option>
+          <option value="19:30">19:30</option>
+          <option value="20:00">20:00</option>
+          <option value="20:30">20:30</option>
+          <option value="21:00">21:00</option>
+          <option value="21:30">21:30</option>
+          <option value="22:00">22:00</option>
+          <option value="22:30">22:30</option>
+          <option value="23:00">23:00</option>
+        </select></div>
+      <div class="field-group" style="text-align:center"><label class="fl" style="text-align:center;justify-content:center">週四</label><select id="f_late_thu" style="font-size:12px;padding:4px 6px">
+          <option value="請選擇">請選擇</option>
+          <option value="07:00">07:00</option>
+          <option value="07:30">07:30</option>
+          <option value="08:00">08:00</option>
+          <option value="08:30">08:30</option>
+          <option value="09:00">09:00</option>
+          <option value="09:30">09:30</option>
+          <option value="10:00">10:00</option>
+          <option value="10:30">10:30</option>
+          <option value="11:00">11:00</option>
+          <option value="11:30">11:30</option>
+          <option value="12:00">12:00</option>
+          <option value="12:30">12:30</option>
+          <option value="13:00">13:00</option>
+          <option value="13:30">13:30</option>
+          <option value="14:00">14:00</option>
+          <option value="14:30">14:30</option>
+          <option value="15:00">15:00</option>
+          <option value="15:30">15:30</option>
+          <option value="16:00">16:00</option>
+          <option value="16:30">16:30</option>
+          <option value="17:00">17:00</option>
+          <option value="17:30">17:30</option>
+          <option value="18:00">18:00</option>
+          <option value="18:30">18:30</option>
+          <option value="19:00">19:00</option>
+          <option value="19:30">19:30</option>
+          <option value="20:00">20:00</option>
+          <option value="20:30">20:30</option>
+          <option value="21:00">21:00</option>
+          <option value="21:30">21:30</option>
+          <option value="22:00">22:00</option>
+          <option value="22:30">22:30</option>
+          <option value="23:00">23:00</option>
+        </select></div>
+      <div class="field-group" style="text-align:center"><label class="fl" style="text-align:center;justify-content:center">週五</label><select id="f_late_fri" style="font-size:12px;padding:4px 6px">
+          <option value="請選擇">請選擇</option>
+          <option value="07:00">07:00</option>
+          <option value="07:30">07:30</option>
+          <option value="08:00">08:00</option>
+          <option value="08:30">08:30</option>
+          <option value="09:00">09:00</option>
+          <option value="09:30">09:30</option>
+          <option value="10:00">10:00</option>
+          <option value="10:30">10:30</option>
+          <option value="11:00">11:00</option>
+          <option value="11:30">11:30</option>
+          <option value="12:00">12:00</option>
+          <option value="12:30">12:30</option>
+          <option value="13:00">13:00</option>
+          <option value="13:30">13:30</option>
+          <option value="14:00">14:00</option>
+          <option value="14:30">14:30</option>
+          <option value="15:00">15:00</option>
+          <option value="15:30">15:30</option>
+          <option value="16:00">16:00</option>
+          <option value="16:30">16:30</option>
+          <option value="17:00">17:00</option>
+          <option value="17:30">17:30</option>
+          <option value="18:00">18:00</option>
+          <option value="18:30">18:30</option>
+          <option value="19:00">19:00</option>
+          <option value="19:30">19:30</option>
+          <option value="20:00">20:00</option>
+          <option value="20:30">20:30</option>
+          <option value="21:00">21:00</option>
+          <option value="21:30">21:30</option>
+          <option value="22:00">22:00</option>
+          <option value="22:30">22:30</option>
+          <option value="23:00">23:00</option>
+        </select></div>
+      <div class="field-group" style="text-align:center"><label class="fl" style="text-align:center;justify-content:center">週六</label><select id="f_late_sat" style="font-size:12px;padding:4px 6px">
+          <option value="請選擇">請選擇</option>
+          <option value="07:00">07:00</option>
+          <option value="07:30">07:30</option>
+          <option value="08:00">08:00</option>
+          <option value="08:30">08:30</option>
+          <option value="09:00">09:00</option>
+          <option value="09:30">09:30</option>
+          <option value="10:00">10:00</option>
+          <option value="10:30">10:30</option>
+          <option value="11:00">11:00</option>
+          <option value="11:30">11:30</option>
+          <option value="12:00">12:00</option>
+          <option value="12:30">12:30</option>
+          <option value="13:00">13:00</option>
+          <option value="13:30">13:30</option>
+          <option value="14:00">14:00</option>
+          <option value="14:30">14:30</option>
+          <option value="15:00">15:00</option>
+          <option value="15:30">15:30</option>
+          <option value="16:00">16:00</option>
+          <option value="16:30">16:30</option>
+          <option value="17:00">17:00</option>
+          <option value="17:30">17:30</option>
+          <option value="18:00">18:00</option>
+          <option value="18:30">18:30</option>
+          <option value="19:00">19:00</option>
+          <option value="19:30">19:30</option>
+          <option value="20:00">20:00</option>
+          <option value="20:30">20:30</option>
+          <option value="21:00">21:00</option>
+          <option value="21:30">21:30</option>
+          <option value="22:00">22:00</option>
+          <option value="22:30">22:30</option>
+          <option value="23:00">23:00</option>
+        </select></div>
+      <div class="field-group" style="text-align:center"><label class="fl" style="text-align:center;justify-content:center">週日</label><select id="f_late_sun" style="font-size:12px;padding:4px 6px">
+          <option value="請選擇">請選擇</option>
+          <option value="07:00">07:00</option>
+          <option value="07:30">07:30</option>
+          <option value="08:00">08:00</option>
+          <option value="08:30">08:30</option>
+          <option value="09:00">09:00</option>
+          <option value="09:30">09:30</option>
+          <option value="10:00">10:00</option>
+          <option value="10:30">10:30</option>
+          <option value="11:00">11:00</option>
+          <option value="11:30">11:30</option>
+          <option value="12:00">12:00</option>
+          <option value="12:30">12:30</option>
+          <option value="13:00">13:00</option>
+          <option value="13:30">13:30</option>
+          <option value="14:00">14:00</option>
+          <option value="14:30">14:30</option>
+          <option value="15:00">15:00</option>
+          <option value="15:30">15:30</option>
+          <option value="16:00">16:00</option>
+          <option value="16:30">16:30</option>
+          <option value="17:00">17:00</option>
+          <option value="17:30">17:30</option>
+          <option value="18:00">18:00</option>
+          <option value="18:30">18:30</option>
+          <option value="19:00">19:00</option>
+          <option value="19:30">19:30</option>
+          <option value="20:00">20:00</option>
+          <option value="20:30">20:30</option>
+          <option value="21:00">21:00</option>
+          <option value="21:30">21:30</option>
+          <option value="22:00">22:00</option>
+          <option value="22:30">22:30</option>
+          <option value="23:00">23:00</option>
+        </select></div>
+      </div>
     </div>
   </div>
   <div class="field-row col2" style="margin-top:4px">
@@ -589,9 +1094,11 @@ function validate(){
     if(!document.getElementById('f_edu1_dept').value.trim()){showToast('⚠️ 請填寫科系別');return false;}
   }
   if(cur===3){
+    if(!isHQ && !document.getElementById('f_license').value){showToast('⚠️ 請選擇駕照種類');return false;}
+    if(!isHQ && !ynValues['bike']){showToast('⚠️ 請回答是否有機車');return false;}
     if(!isHQ){
-      const days=[...document.querySelectorAll('.sched-grid [data-day]:checked')];
-      if(!days.length){showToast('⚠️ 請勾選至少一天可上班日');return false;}
+      const earlyFilled=[...document.querySelectorAll('[id^="f_early_"]')].some(s=>s.value&&s.value!=='請選擇');
+      if(!earlyFilled){showToast('⚠️ 請至少填寫一天的最早上班時間');return false;}
     }
     if(!document.getElementById('f_start_date').value){showToast('⚠️ 請填寫預計報到日期');return false;}
     if(!isHQ && !document.getElementById('f_transport').value.trim()){showToast('⚠️ 請填寫交通工具');return false;}
@@ -604,14 +1111,16 @@ function validate(){
     if(!document.getElementById('f_leave_reason').value.trim()){showToast('⚠️ 請填寫離職原因（無工作經驗請填「無」）');return false;}
   }
   if(cur===5){
-    if(!ynValues['q1']){showToast('⚠️ 聲明第1題尚未作答');return false;}
-    if(!ynValues['q2']){showToast('⚠️ 聲明第2題尚未作答');return false;}
-    if(!ynValues['q3']){showToast('⚠️ 聲明第3題尚未作答');return false;}
-    if(!ynValues['q4']){showToast('⚠️ 聲明第4題尚未作答');return false;}
-    if(!ynValues['q5']){showToast('⚠️ 聲明第5題尚未作答');return false;}
-    if(!ynValues['q6']){showToast('⚠️ 聲明第6題尚未作答');return false;}
-    if(!ynValues['q7']){showToast('⚠️ 聲明第7題尚未作答');return false;}
-    if(!ynValues['q8']){showToast('⚠️ 聲明第8題尚未作答');return false;}
+    if(!ynValues['q_report']){showToast('⚠️ 聲明第1題尚未作答');return false;}
+    if(!ynValues['q_support']){showToast('⚠️ 聲明第2題尚未作答');return false;}
+    if(!ynValues['q_ot']){showToast('⚠️ 聲明第3題尚未作答');return false;}
+    if(!ynValues['q6']){showToast('⚠️ 聲明第4題尚未作答');return false;}
+    if(!ynValues['q7']){showToast('⚠️ 聲明第5題尚未作答');return false;}
+    if(!ynValues['q_temp']){showToast('⚠️ 聲明第6題尚未作答');return false;}
+    if(!ynValues['q3']){showToast('⚠️ 聲明第7題尚未作答');return false;}
+    if(!ynValues['q4']){showToast('⚠️ 聲明第8題尚未作答');return false;}
+    if(!ynValues['q1']){showToast('⚠️ 聲明第9題尚未作答');return false;}
+    if(!ynValues['q_spx']){showToast('⚠️ 聲明第10題尚未作答');return false;}
     if(!document.getElementById('agreeChk').checked){showToast('⚠️ 請勾選同意聲明後再繼續');return false;}
   }
 
@@ -698,13 +1207,15 @@ function goBack(){cur=Math.max(0,cur-1);updateProgress();window.scrollTo({top:0,
 
 function collectData(){
   const days=['一','二','三','四','五','六','日'];
-  const avail=[...document.querySelectorAll('.sched-grid [data-day]:checked')].map(c=>days[parseInt(c.dataset.day)-1]).join('、')||'無';
+  
   const storeMap={manned:'有人店',smart:'智取店',parcel:'寄件店',temp:'短期工讀',hq:'總部職務'};
   return{
     '填表時間':new Date().toLocaleString('zh-TW'),
     '應徵店別':storeMap[selectedStore]||'',
     '應徵班別':[...document.querySelectorAll('[name=shift]:checked')].map(c=>c.value).join('、'),
     '應徵門市或地區':document.getElementById('f_store_area').value,
+    '駕照':(document.getElementById('f_license')||{}).value||'',
+    '是否有機車':ynValues['bike']||'',
     '中文姓名':document.getElementById('f_name').value,
     '國籍':document.getElementById('f_nationality').value,
     '性別':document.getElementById('f_gender').value,
@@ -724,9 +1235,22 @@ function collectData(){
     '學歷2期間':document.getElementById('f_edu2_period').value,
     '學歷2學校':document.getElementById('f_edu2_school').value,
     '學歷2科系':document.getElementById('f_edu2_dept').value,
-    '可上班日':avail,
+    '最早上班_週一':(document.getElementById('f_early_mon')||{}).value||'',
+    '最早上班_週二':(document.getElementById('f_early_tue')||{}).value||'',
+    '最早上班_週三':(document.getElementById('f_early_wed')||{}).value||'',
+    '最早上班_週四':(document.getElementById('f_early_thu')||{}).value||'',
+    '最早上班_週五':(document.getElementById('f_early_fri')||{}).value||'',
+    '最早上班_週六':(document.getElementById('f_early_sat')||{}).value||'',
+    '最早上班_週日':(document.getElementById('f_early_sun')||{}).value||'',
+    '最晚下班_週一':(document.getElementById('f_late_mon')||{}).value||'',
+    '最晚下班_週二':(document.getElementById('f_late_tue')||{}).value||'',
+    '最晚下班_週三':(document.getElementById('f_late_wed')||{}).value||'',
+    '最晚下班_週四':(document.getElementById('f_late_thu')||{}).value||'',
+    '最晚下班_週五':(document.getElementById('f_late_fri')||{}).value||'',
+    '最晚下班_週六':(document.getElementById('f_late_sat')||{}).value||'',
+    '最晚下班_週日':(document.getElementById('f_late_sun')||{}).value||'',
     '預計報到日':document.getElementById('f_start_date').value,
-    '交通工具':document.getElementById('f_transport').value,
+    '交通工具':(document.getElementById('f_transport')||{}).value||'',
     '持有本人帳戶':ynValues['acct']||'',
     '可支援門市':document.getElementById('f_support_store').value,
     '時間備註':document.getElementById('f_schedule_note').value,
@@ -737,14 +1261,17 @@ function collectData(){
     '離職薪資':document.getElementById('f_salary').value,
     '離職原因':document.getElementById('f_leave_reason').value,
     '工作職責':document.getElementById('f_job_desc').value,
-    '聲明Q1犯罪':ynValues['q1']||'',
-    '聲明Q2勞資':ynValues['q2']||'',
-    '聲明Q3特殊身分':ynValues['q3']||'',
-    '聲明Q4疾病':ynValues['q4']||'',
-    '聲明Q5殘障':ynValues['q5']||'',
+    '聲明Q_報到':ynValues['q_report']||'',
+    '聲明Q_支援':ynValues['q_support']||'',
+    '聲明Q_加班':ynValues['q_ot']||'',
     '聲明Q6懷孕':ynValues['q6']||'',
     '聲明Q7檳榔':ynValues['q7']||'',
-    '聲明Q8良民證':ynValues['q8']||'',
+    '聲明Q_短期':ynValues['q_temp']||'',
+    '聲明Q3特殊身分':ynValues['q3']||'',
+    '聲明Q4疾病':ynValues['q4']||'',
+    '聲明Q1犯罪':ynValues['q1']||'',
+    '曾應徵蝦皮':ynValues['q_spx']||'',
+    '聲明備註':(document.getElementById('f_decl_note')||{}).value||'',
     '緊急聯絡人姓名':document.getElementById('f_ec_name').value,
     '緊急聯絡人關係':document.getElementById('f_ec_rel').value,
     '緊急聯絡人電話':document.getElementById('f_ec_phone').value,
