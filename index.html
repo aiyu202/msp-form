@@ -951,14 +951,21 @@ input::placeholder,textarea::placeholder{color:var(--text3)}
     （四）本人同意日後因工作業務需要，可配合貴公司進行工作、職務、班別、地點及廠區之調度，且同意配合季節性生產調度及工廠狀況增減工作時間，絕無異議。
   </div>
   <div>
-    <div class="yn-row"><p>1. 是否曾在警政司法單位有違法之犯罪紀錄、訴訟事件？</p><div class="yn-group"><button class="yn-btn" onclick="setYN(this,'q1','Y')">是</button><button class="yn-btn" onclick="setYN(this,'q1','N')">否</button></div></div>
-    <div class="yn-row"><p>2. 過往工作中是否曾涉及勞資相關爭議或申訴？</p><div class="yn-group"><button class="yn-btn" onclick="setYN(this,'q2','Y')">是</button><button class="yn-btn" onclick="setYN(this,'q2','N')">否</button></div></div>
-    <div class="yn-row"><p>3. 是否具特殊身分（外籍人士 / 身心障礙手冊）？</p><div class="yn-group"><button class="yn-btn" onclick="setYN(this,'q3','Y')">是</button><button class="yn-btn" onclick="setYN(this,'q3','N')">否</button></div></div>
-    <div class="yn-row"><p>4. 是否患有重大、特殊、遺傳性、慢性疾病？</p><div class="yn-group"><button class="yn-btn" onclick="setYN(this,'q4','Y')">是</button><button class="yn-btn" onclick="setYN(this,'q4','N')">否</button></div></div>
-    <div class="yn-row"><p>5. 是否領有殘障手冊？</p><div class="yn-group"><button class="yn-btn" onclick="setYN(this,'q5','Y')">是</button><button class="yn-btn" onclick="setYN(this,'q5','N')">否</button></div></div>
-    <div class="yn-row"><p>6. 是否懷孕？（男性免填）</p><div class="yn-group"><button class="yn-btn" onclick="setYN(this,'q6','Y')">是</button><button class="yn-btn" onclick="setYN(this,'q6','N')">否</button></div></div>
-    <div class="yn-row"><p>7. 是否有嚼檳榔習慣？</p><div class="yn-group"><button class="yn-btn" onclick="setYN(this,'q7','Y')">是</button><button class="yn-btn" onclick="setYN(this,'q7','N')">否</button></div></div>
-    <div class="yn-row"><p>8. 是否有良民證？（有請備妥提供）</p><div class="yn-group"><button class="yn-btn" onclick="setYN(this,'q8','Y')">是</button><button class="yn-btn" onclick="setYN(this,'q8','N')">否</button></div></div>
+    <div class="yn-row"><p>1. 是否可於兩週內報到？</p><div class="yn-group"><button class="yn-btn" onclick="setYN(this,'q_report','Y')">是</button><button class="yn-btn" onclick="setYN(this,'q_report','N')">否</button></div></div>
+    <div class="yn-row"><p>2. 是否可彈性支援其他門市？</p><div class="yn-group"><button class="yn-btn" onclick="setYN(this,'q_support','Y')">是</button><button class="yn-btn" onclick="setYN(this,'q_support','N')">否</button></div></div>
+    <div class="yn-row"><p>3. 是否可配合加班？（延後下班至少1小時）</p><div class="yn-group"><button class="yn-btn" onclick="setYN(this,'q_ot','Y')">是</button><button class="yn-btn" onclick="setYN(this,'q_ot','N')">否</button></div></div>
+    <div class="yn-row"><p>4. 是否有懷孕？（男性請填寫否）</p><div class="yn-group"><button class="yn-btn" onclick="setYN(this,'q6','Y')">是</button><button class="yn-btn" onclick="setYN(this,'q6','N')">否</button></div></div>
+    <div class="yn-row"><p>5. 是否有嚼檳榔之習慣？</p><div class="yn-group"><button class="yn-btn" onclick="setYN(this,'q7','Y')">是</button><button class="yn-btn" onclick="setYN(this,'q7','N')">否</button></div></div>
+    <div class="yn-row"><p>6. 是否為短期？（如為短期，請於備註提及任職期間）</p><div class="yn-group"><button class="yn-btn" onclick="setYN(this,'q_temp','Y')">是</button><button class="yn-btn" onclick="setYN(this,'q_temp','N')">否</button></div></div>
+    <div class="yn-row"><p>7. 是否具特殊身分（外籍人士 / 身心障礙手冊）？</p><div class="yn-group"><button class="yn-btn" onclick="setYN(this,'q3','Y')">是</button><button class="yn-btn" onclick="setYN(this,'q3','N')">否</button></div></div>
+    <div class="yn-row"><p>8. 是否患有重大、特殊、遺傳性、慢性疾病？</p><div class="yn-group"><button class="yn-btn" onclick="setYN(this,'q4','Y')">是</button><button class="yn-btn" onclick="setYN(this,'q4','N')">否</button></div></div>
+    <div class="yn-row"><p>9. 是否曾在警政司法單位有違法之犯罪紀錄、訴訟事件？</p><div class="yn-group"><button class="yn-btn" onclick="setYN(this,'q1','Y')">是</button><button class="yn-btn" onclick="setYN(this,'q1','N')">否</button></div></div>
+    <div class="yn-row"><p>10. 是否曾於蝦皮任職過（任何職缺、地點、職位）？</p><div class="yn-group"><button class="yn-btn" onclick="setYN(this,'q_spx','Y')">是</button><button class="yn-btn" onclick="setYN(this,'q_spx','N')">否</button></div></div>
+    <div class="field-row col1" style="margin-top:10px">
+      <div class="field-group"><label class="fl">※ 備註（第6~10題有填「是」請補充說明）</label>
+        <textarea id="f_decl_note" placeholder="請補充說明..."></textarea>
+      </div>
+    </div>
   </div>
   <div style="margin-top:14px">
     <label class="pill" id="agreePill" style="border-radius:8px;width:100%;justify-content:flex-start">
