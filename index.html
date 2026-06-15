@@ -878,8 +878,35 @@ input::placeholder,textarea::placeholder{color:var(--text3)}
     </div>
   </div>
   <div class="field-row col2" style="margin-top:4px">
+    <div class="field-group">
+      <label class="fl">駕照<span class="req">*</span></label>
+      <select id="f_license">
+        <option value="">請選擇</option>
+        <option>無</option>
+        <option>機車</option>
+        <option>汽車</option>
+        <option>機車及汽車都有</option>
+      </select>
+    </div>
+    <div class="field-group">
+      <label class="fl">是否有機車<span class="req">*</span></label>
+      <div class="yn-group">
+        <button class="yn-btn" onclick="setYN(this,'bike','Y')">是</button>
+        <button class="yn-btn" onclick="setYN(this,'bike','N')">否</button>
+      </div>
+    </div>
+  </div>
+  <div class="field-row col2" style="margin-top:4px">
     <div class="field-group"><label class="fl">預計報到日期<span class="req">*</span></label><input type="date" id="f_start_date"></div>
-    <div class="field-group" id="transport-wrap"><label class="fl">交通工具<span class="req">*</span></label><input type="text" id="f_transport" placeholder="例：機車、捷運、自行車、開車"></div>
+    <div class="field-group" id="transport-wrap"><label class="fl">若無機車，請選其他交通工具</label>
+      <select id="f_transport">
+        <option value="">請選擇</option>
+        <option>汽車</option>
+        <option>腳踏車</option>
+        <option>大眾運輸</option>
+        <option>步行</option>
+      </select>
+    </div>
   </div>
   <div class="field-row col2">
     <div class="field-group">
