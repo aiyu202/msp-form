@@ -345,9 +345,9 @@ input::placeholder,textarea::placeholder{color:var(--text3)}
   <div class="section-title"><span class="section-num">3</span> 教育背景 <span class="en-label">Education</span></div>
   <div style="font-size:12px;color:var(--text3);margin-bottom:12px">請填寫最高學歷（最多兩筆）</div>
   <div class="field-row col3">
-    <div class="field-group"><label class="fl">起訖年份<span class="req">*</span></label><input type="text" id="f_edu1_period" placeholder="2018–2022"></div>
-    <div class="field-group"><label class="fl">學校名稱<span class="req">*</span></label><input type="text" id="f_edu1_school" placeholder="學校名稱"></div>
-    <div class="field-group"><label class="fl">科系別<span class="req">*</span></label><input type="text" id="f_edu1_dept" placeholder="科系"></div>
+    <div class="field-group"><label class="fl">起訖年份</label><input type="text" id="f_edu1_period" placeholder="2018–2022"></div>
+    <div class="field-group"><label class="fl">學校名稱</label><input type="text" id="f_edu1_school" placeholder="學校名稱"></div>
+    <div class="field-group"><label class="fl">科系別</label><input type="text" id="f_edu1_dept" placeholder="科系"></div>
   </div>
   <div class="field-row col3">
     <div class="field-group"><label class="fl">起訖年份（選填）</label><input type="text" id="f_edu2_period" placeholder="2015–2018"></div>
@@ -901,6 +901,7 @@ input::placeholder,textarea::placeholder{color:var(--text3)}
     <div class="field-group" id="transport-wrap"><label class="fl">若無機車，請選其他交通工具</label>
       <select id="f_transport">
         <option value="">請選擇</option>
+        <option>機車</option>
         <option>汽車</option>
         <option>腳踏車</option>
         <option>大眾運輸</option>
@@ -979,9 +980,9 @@ input::placeholder,textarea::placeholder{color:var(--text3)}
 <div class="section-card" id="step7">
   <div class="section-title"><span class="section-num">7</span> 緊急聯絡人 <span class="en-label">Emergency Contact</span></div>
   <div class="field-row col3">
-    <div class="field-group"><label class="fl">姓名</label><input type="text" id="f_ec_name" placeholder="緊急聯絡人姓名"></div>
-    <div class="field-group"><label class="fl">關係</label><input type="text" id="f_ec_rel" placeholder="例：父母、配偶"></div>
-    <div class="field-group"><label class="fl">聯絡電話</label><input type="tel" id="f_ec_phone" placeholder="09XX-XXX-XXX"></div>
+    <div class="field-group"><label class="fl">姓名<span class="req">*</span></label><input type="text" id="f_ec_name" placeholder="緊急聯絡人姓名"></div>
+    <div class="field-group"><label class="fl">關係<span class="req">*</span></label><input type="text" id="f_ec_rel" placeholder="例：父母、配偶"></div>
+    <div class="field-group"><label class="fl">聯絡電話<span class="req">*</span></label><input type="tel" id="f_ec_phone" placeholder="09XX-XXX-XXX"></div>
   </div>
   <div class="warn-box">
     ⚠️ 送出前請確認以下資訊填寫完整：<br>
@@ -1114,19 +1115,13 @@ function validate(){
     if(!document.getElementById('f_gender').value){showToast('⚠️ 請選擇性別');return false;}
     if(!isHQ && !document.getElementById('f_birth').value){showToast('⚠️ 請填寫出生日期');return false;}
     if(!isHQ && !document.getElementById('f_id').value.trim()){showToast('⚠️ 請填寫身分證字號');return false;}
-    if(!isHQ && !document.getElementById('f_height').value.trim()){showToast('⚠️ 請填寫身高');return false;}
-    if(!isHQ && !document.getElementById('f_weight').value.trim()){showToast('⚠️ 請填寫體重');return false;}
     if(!document.getElementById('f_phone').value.trim()){showToast('⚠️ 請填寫手機號碼');return false;}
     if(!document.getElementById('f_email').value.trim()){showToast('⚠️ 請填寫電子信箱');return false;}
     if(!document.getElementById('f_address').value.trim()){showToast('⚠️ 請填寫通訊地址');return false;}
     if(!document.querySelector('[name=shopee_exp]:checked')){showToast('⚠️ 請回答是否曾應徵蝦皮');return false;}
     if(!document.getElementById('f_marital').value){showToast('⚠️ 請選擇婚姻狀況');return false;}
   }
-  if(cur===2){
-    if(!document.getElementById('f_edu1_period').value.trim()){showToast('⚠️ 請填寫學歷起訖年份');return false;}
-    if(!document.getElementById('f_edu1_school').value.trim()){showToast('⚠️ 請填寫學校名稱');return false;}
-    if(!document.getElementById('f_edu1_dept').value.trim()){showToast('⚠️ 請填寫科系別');return false;}
-  }
+
   if(cur===3){
     if(!isHQ && !document.getElementById('f_license').value){showToast('⚠️ 請選擇駕照種類');return false;}
     if(!isHQ && !ynValues['bike']){showToast('⚠️ 請回答是否有機車');return false;}
@@ -1157,7 +1152,11 @@ function validate(){
     if(!ynValues['q_spx']){showToast('⚠️ 聲明第10題尚未作答');return false;}
     if(!document.getElementById('agreeChk').checked){showToast('⚠️ 請勾選同意聲明後再繼續');return false;}
   }
-
+  if(cur===6){
+    if(!document.getElementById('f_ec_name').value.trim()){showToast('⚠️ 請填寫緊急聯絡人姓名');return false;}
+    if(!document.getElementById('f_ec_rel').value.trim()){showToast('⚠️ 請填寫緊急聯絡人關係');return false;}
+    if(!document.getElementById('f_ec_phone').value.trim()){showToast('⚠️ 請填寫緊急聯絡人電話');return false;}
+  }
   return true;
 }
 function renderPreview(){
