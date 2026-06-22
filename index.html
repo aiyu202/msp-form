@@ -211,10 +211,10 @@ input::placeholder,textarea::placeholder{color:var(--text3)}
     <label class="fl" style="font-size:13px;font-weight:500;color:var(--text2);margin-bottom:6px;display:block">應徵班別<span class="req">*</span></label>
     <div class="shift-options">
       <label class="shift-opt"><input type="checkbox" name="shift" value="智取店-早班">
-        <div><div class="shift-opt-label">早班</div><div class="shift-opt-time">07:00–12:00（平日）</div></div>
+        <div><div class="shift-opt-label">早班</div><div class="shift-opt-time">07:00–12:00</div></div>
       </label>
       <label class="shift-opt"><input type="checkbox" name="shift" value="智取店-晚班">
-        <div><div class="shift-opt-label">晚班</div><div class="shift-opt-time">17:30–23:30（平日）</div></div>
+        <div><div class="shift-opt-label">晚班</div><div class="shift-opt-time">17:30–23:30</div></div>
       </label>
       <label class="shift-opt"><input type="checkbox" name="shift" value="智取店-假日早班">
         <div><div class="shift-opt-label">假日早班（時薪）</div><div class="shift-opt-time">07:00–12:00（假日）</div></div>
@@ -307,8 +307,8 @@ input::placeholder,textarea::placeholder{color:var(--text3)}
     <div class="field-group" id="wrap_id"><label class="fl">身分證字號<span class="req" id="req_id">*</span></label><input type="text" id="f_id" placeholder="A123456789" maxlength="10"></div>
   </div>
   <div class="field-row col2">
-    <div class="field-group" id="wrap_height"><label class="fl">身高 (cm)</label><input type="number" id="f_height" placeholder="165"></div>
-    <div class="field-group" id="wrap_weight"><label class="fl">體重 (kg)</label><input type="number" id="f_weight" placeholder="60"></div>
+    <div class="field-group" id="wrap_height"><label class="fl">身高 (cm)<span class="req">*</span></label><input type="number" id="f_height" placeholder="165"></div>
+    <div class="field-group" id="wrap_weight"><label class="fl">體重 (kg)<span class="req">*</span></label><input type="number" id="f_weight" placeholder="60"></div>
   </div>
   <div class="field-row col2">
     <div class="field-group"><label class="fl">手機<span class="req">*</span></label><input type="tel" id="f_phone" placeholder="09XX-XXX-XXX"></div>
@@ -316,6 +316,11 @@ input::placeholder,textarea::placeholder{color:var(--text3)}
   </div>
   <div class="field-row col1">
     <div class="field-group"><label class="fl">通訊地址<span class="req">*</span></label><input type="text" id="f_address" placeholder="縣市 + 區 + 路街門號"></div>
+  </div>
+  <div class="field-row col1">
+    <div class="field-group"><label class="fl">戶籍地<span class="req">*</span></label><input type="text" id="f_household" placeholder="填寫到 XX市XX區 即可">
+      <div style="font-size:11px;color:var(--text3);margin-top:3px">僅需填寫到縣市+區，不需詳細地址</div>
+    </div>
   </div>
   <div class="field-row col1">
     <div class="field-group">
@@ -345,9 +350,9 @@ input::placeholder,textarea::placeholder{color:var(--text3)}
   <div class="section-title"><span class="section-num">3</span> 教育背景 <span class="en-label">Education</span></div>
   <div style="font-size:12px;color:var(--text3);margin-bottom:12px">請填寫最高學歷（最多兩筆）</div>
   <div class="field-row col3">
-    <div class="field-group"><label class="fl">起訖年份</label><input type="text" id="f_edu1_period" placeholder="2018–2022"></div>
-    <div class="field-group"><label class="fl">學校名稱</label><input type="text" id="f_edu1_school" placeholder="學校名稱"></div>
-    <div class="field-group"><label class="fl">科系別</label><input type="text" id="f_edu1_dept" placeholder="科系"></div>
+    <div class="field-group"><label class="fl">起訖年份<span class="req">*</span></label><input type="text" id="f_edu1_period" placeholder="2018–2022"></div>
+    <div class="field-group"><label class="fl">學校名稱<span class="req">*</span></label><input type="text" id="f_edu1_school" placeholder="學校名稱"></div>
+    <div class="field-group"><label class="fl">科系別<span class="req">*</span></label><input type="text" id="f_edu1_dept" placeholder="科系"></div>
   </div>
   <div class="field-row col3">
     <div class="field-group"><label class="fl">起訖年份（選填）</label><input type="text" id="f_edu2_period" placeholder="2015–2018"></div>
@@ -366,6 +371,21 @@ input::placeholder,textarea::placeholder{color:var(--text3)}
       <div style="display:grid;grid-template-columns:repeat(7,1fr);gap:6px">
       <div class="field-group" style="text-align:center"><label class="fl" style="text-align:center;justify-content:center">週一</label><select id="f_early_mon" style="font-size:12px;padding:4px 6px">
           <option value="請選擇">請選擇</option>
+          <option value="無法">無法</option>
+          <option value="00:00">00:00</option>
+          <option value="00:30">00:30</option>
+          <option value="01:00">01:00</option>
+          <option value="01:30">01:30</option>
+          <option value="02:00">02:00</option>
+          <option value="02:30">02:30</option>
+          <option value="03:00">03:00</option>
+          <option value="03:30">03:30</option>
+          <option value="04:00">04:00</option>
+          <option value="04:30">04:30</option>
+          <option value="05:00">05:00</option>
+          <option value="05:30">05:30</option>
+          <option value="06:00">06:00</option>
+          <option value="06:30">06:30</option>
           <option value="07:00">07:00</option>
           <option value="07:30">07:30</option>
           <option value="08:00">08:00</option>
@@ -399,9 +419,25 @@ input::placeholder,textarea::placeholder{color:var(--text3)}
           <option value="22:00">22:00</option>
           <option value="22:30">22:30</option>
           <option value="23:00">23:00</option>
+          <option value="23:30">23:30</option>
         </select></div>
       <div class="field-group" style="text-align:center"><label class="fl" style="text-align:center;justify-content:center">週二</label><select id="f_early_tue" style="font-size:12px;padding:4px 6px">
           <option value="請選擇">請選擇</option>
+          <option value="無法">無法</option>
+          <option value="00:00">00:00</option>
+          <option value="00:30">00:30</option>
+          <option value="01:00">01:00</option>
+          <option value="01:30">01:30</option>
+          <option value="02:00">02:00</option>
+          <option value="02:30">02:30</option>
+          <option value="03:00">03:00</option>
+          <option value="03:30">03:30</option>
+          <option value="04:00">04:00</option>
+          <option value="04:30">04:30</option>
+          <option value="05:00">05:00</option>
+          <option value="05:30">05:30</option>
+          <option value="06:00">06:00</option>
+          <option value="06:30">06:30</option>
           <option value="07:00">07:00</option>
           <option value="07:30">07:30</option>
           <option value="08:00">08:00</option>
@@ -435,9 +471,25 @@ input::placeholder,textarea::placeholder{color:var(--text3)}
           <option value="22:00">22:00</option>
           <option value="22:30">22:30</option>
           <option value="23:00">23:00</option>
+          <option value="23:30">23:30</option>
         </select></div>
       <div class="field-group" style="text-align:center"><label class="fl" style="text-align:center;justify-content:center">週三</label><select id="f_early_wed" style="font-size:12px;padding:4px 6px">
           <option value="請選擇">請選擇</option>
+          <option value="無法">無法</option>
+          <option value="00:00">00:00</option>
+          <option value="00:30">00:30</option>
+          <option value="01:00">01:00</option>
+          <option value="01:30">01:30</option>
+          <option value="02:00">02:00</option>
+          <option value="02:30">02:30</option>
+          <option value="03:00">03:00</option>
+          <option value="03:30">03:30</option>
+          <option value="04:00">04:00</option>
+          <option value="04:30">04:30</option>
+          <option value="05:00">05:00</option>
+          <option value="05:30">05:30</option>
+          <option value="06:00">06:00</option>
+          <option value="06:30">06:30</option>
           <option value="07:00">07:00</option>
           <option value="07:30">07:30</option>
           <option value="08:00">08:00</option>
@@ -471,9 +523,25 @@ input::placeholder,textarea::placeholder{color:var(--text3)}
           <option value="22:00">22:00</option>
           <option value="22:30">22:30</option>
           <option value="23:00">23:00</option>
+          <option value="23:30">23:30</option>
         </select></div>
       <div class="field-group" style="text-align:center"><label class="fl" style="text-align:center;justify-content:center">週四</label><select id="f_early_thu" style="font-size:12px;padding:4px 6px">
           <option value="請選擇">請選擇</option>
+          <option value="無法">無法</option>
+          <option value="00:00">00:00</option>
+          <option value="00:30">00:30</option>
+          <option value="01:00">01:00</option>
+          <option value="01:30">01:30</option>
+          <option value="02:00">02:00</option>
+          <option value="02:30">02:30</option>
+          <option value="03:00">03:00</option>
+          <option value="03:30">03:30</option>
+          <option value="04:00">04:00</option>
+          <option value="04:30">04:30</option>
+          <option value="05:00">05:00</option>
+          <option value="05:30">05:30</option>
+          <option value="06:00">06:00</option>
+          <option value="06:30">06:30</option>
           <option value="07:00">07:00</option>
           <option value="07:30">07:30</option>
           <option value="08:00">08:00</option>
@@ -507,9 +575,25 @@ input::placeholder,textarea::placeholder{color:var(--text3)}
           <option value="22:00">22:00</option>
           <option value="22:30">22:30</option>
           <option value="23:00">23:00</option>
+          <option value="23:30">23:30</option>
         </select></div>
       <div class="field-group" style="text-align:center"><label class="fl" style="text-align:center;justify-content:center">週五</label><select id="f_early_fri" style="font-size:12px;padding:4px 6px">
           <option value="請選擇">請選擇</option>
+          <option value="無法">無法</option>
+          <option value="00:00">00:00</option>
+          <option value="00:30">00:30</option>
+          <option value="01:00">01:00</option>
+          <option value="01:30">01:30</option>
+          <option value="02:00">02:00</option>
+          <option value="02:30">02:30</option>
+          <option value="03:00">03:00</option>
+          <option value="03:30">03:30</option>
+          <option value="04:00">04:00</option>
+          <option value="04:30">04:30</option>
+          <option value="05:00">05:00</option>
+          <option value="05:30">05:30</option>
+          <option value="06:00">06:00</option>
+          <option value="06:30">06:30</option>
           <option value="07:00">07:00</option>
           <option value="07:30">07:30</option>
           <option value="08:00">08:00</option>
@@ -543,9 +627,25 @@ input::placeholder,textarea::placeholder{color:var(--text3)}
           <option value="22:00">22:00</option>
           <option value="22:30">22:30</option>
           <option value="23:00">23:00</option>
+          <option value="23:30">23:30</option>
         </select></div>
       <div class="field-group" style="text-align:center"><label class="fl" style="text-align:center;justify-content:center">週六</label><select id="f_early_sat" style="font-size:12px;padding:4px 6px">
           <option value="請選擇">請選擇</option>
+          <option value="無法">無法</option>
+          <option value="00:00">00:00</option>
+          <option value="00:30">00:30</option>
+          <option value="01:00">01:00</option>
+          <option value="01:30">01:30</option>
+          <option value="02:00">02:00</option>
+          <option value="02:30">02:30</option>
+          <option value="03:00">03:00</option>
+          <option value="03:30">03:30</option>
+          <option value="04:00">04:00</option>
+          <option value="04:30">04:30</option>
+          <option value="05:00">05:00</option>
+          <option value="05:30">05:30</option>
+          <option value="06:00">06:00</option>
+          <option value="06:30">06:30</option>
           <option value="07:00">07:00</option>
           <option value="07:30">07:30</option>
           <option value="08:00">08:00</option>
@@ -579,9 +679,25 @@ input::placeholder,textarea::placeholder{color:var(--text3)}
           <option value="22:00">22:00</option>
           <option value="22:30">22:30</option>
           <option value="23:00">23:00</option>
+          <option value="23:30">23:30</option>
         </select></div>
       <div class="field-group" style="text-align:center"><label class="fl" style="text-align:center;justify-content:center">週日</label><select id="f_early_sun" style="font-size:12px;padding:4px 6px">
           <option value="請選擇">請選擇</option>
+          <option value="無法">無法</option>
+          <option value="00:00">00:00</option>
+          <option value="00:30">00:30</option>
+          <option value="01:00">01:00</option>
+          <option value="01:30">01:30</option>
+          <option value="02:00">02:00</option>
+          <option value="02:30">02:30</option>
+          <option value="03:00">03:00</option>
+          <option value="03:30">03:30</option>
+          <option value="04:00">04:00</option>
+          <option value="04:30">04:30</option>
+          <option value="05:00">05:00</option>
+          <option value="05:30">05:30</option>
+          <option value="06:00">06:00</option>
+          <option value="06:30">06:30</option>
           <option value="07:00">07:00</option>
           <option value="07:30">07:30</option>
           <option value="08:00">08:00</option>
@@ -615,6 +731,7 @@ input::placeholder,textarea::placeholder{color:var(--text3)}
           <option value="22:00">22:00</option>
           <option value="22:30">22:30</option>
           <option value="23:00">23:00</option>
+          <option value="23:30">23:30</option>
         </select></div>
       </div>
     </div>
@@ -624,6 +741,21 @@ input::placeholder,textarea::placeholder{color:var(--text3)}
       <div style="display:grid;grid-template-columns:repeat(7,1fr);gap:6px">
       <div class="field-group" style="text-align:center"><label class="fl" style="text-align:center;justify-content:center">週一</label><select id="f_late_mon" style="font-size:12px;padding:4px 6px">
           <option value="請選擇">請選擇</option>
+          <option value="無法">無法</option>
+          <option value="00:00">00:00</option>
+          <option value="00:30">00:30</option>
+          <option value="01:00">01:00</option>
+          <option value="01:30">01:30</option>
+          <option value="02:00">02:00</option>
+          <option value="02:30">02:30</option>
+          <option value="03:00">03:00</option>
+          <option value="03:30">03:30</option>
+          <option value="04:00">04:00</option>
+          <option value="04:30">04:30</option>
+          <option value="05:00">05:00</option>
+          <option value="05:30">05:30</option>
+          <option value="06:00">06:00</option>
+          <option value="06:30">06:30</option>
           <option value="07:00">07:00</option>
           <option value="07:30">07:30</option>
           <option value="08:00">08:00</option>
@@ -657,9 +789,25 @@ input::placeholder,textarea::placeholder{color:var(--text3)}
           <option value="22:00">22:00</option>
           <option value="22:30">22:30</option>
           <option value="23:00">23:00</option>
+          <option value="23:30">23:30</option>
         </select></div>
       <div class="field-group" style="text-align:center"><label class="fl" style="text-align:center;justify-content:center">週二</label><select id="f_late_tue" style="font-size:12px;padding:4px 6px">
           <option value="請選擇">請選擇</option>
+          <option value="無法">無法</option>
+          <option value="00:00">00:00</option>
+          <option value="00:30">00:30</option>
+          <option value="01:00">01:00</option>
+          <option value="01:30">01:30</option>
+          <option value="02:00">02:00</option>
+          <option value="02:30">02:30</option>
+          <option value="03:00">03:00</option>
+          <option value="03:30">03:30</option>
+          <option value="04:00">04:00</option>
+          <option value="04:30">04:30</option>
+          <option value="05:00">05:00</option>
+          <option value="05:30">05:30</option>
+          <option value="06:00">06:00</option>
+          <option value="06:30">06:30</option>
           <option value="07:00">07:00</option>
           <option value="07:30">07:30</option>
           <option value="08:00">08:00</option>
@@ -693,9 +841,25 @@ input::placeholder,textarea::placeholder{color:var(--text3)}
           <option value="22:00">22:00</option>
           <option value="22:30">22:30</option>
           <option value="23:00">23:00</option>
+          <option value="23:30">23:30</option>
         </select></div>
       <div class="field-group" style="text-align:center"><label class="fl" style="text-align:center;justify-content:center">週三</label><select id="f_late_wed" style="font-size:12px;padding:4px 6px">
           <option value="請選擇">請選擇</option>
+          <option value="無法">無法</option>
+          <option value="00:00">00:00</option>
+          <option value="00:30">00:30</option>
+          <option value="01:00">01:00</option>
+          <option value="01:30">01:30</option>
+          <option value="02:00">02:00</option>
+          <option value="02:30">02:30</option>
+          <option value="03:00">03:00</option>
+          <option value="03:30">03:30</option>
+          <option value="04:00">04:00</option>
+          <option value="04:30">04:30</option>
+          <option value="05:00">05:00</option>
+          <option value="05:30">05:30</option>
+          <option value="06:00">06:00</option>
+          <option value="06:30">06:30</option>
           <option value="07:00">07:00</option>
           <option value="07:30">07:30</option>
           <option value="08:00">08:00</option>
@@ -729,9 +893,25 @@ input::placeholder,textarea::placeholder{color:var(--text3)}
           <option value="22:00">22:00</option>
           <option value="22:30">22:30</option>
           <option value="23:00">23:00</option>
+          <option value="23:30">23:30</option>
         </select></div>
       <div class="field-group" style="text-align:center"><label class="fl" style="text-align:center;justify-content:center">週四</label><select id="f_late_thu" style="font-size:12px;padding:4px 6px">
           <option value="請選擇">請選擇</option>
+          <option value="無法">無法</option>
+          <option value="00:00">00:00</option>
+          <option value="00:30">00:30</option>
+          <option value="01:00">01:00</option>
+          <option value="01:30">01:30</option>
+          <option value="02:00">02:00</option>
+          <option value="02:30">02:30</option>
+          <option value="03:00">03:00</option>
+          <option value="03:30">03:30</option>
+          <option value="04:00">04:00</option>
+          <option value="04:30">04:30</option>
+          <option value="05:00">05:00</option>
+          <option value="05:30">05:30</option>
+          <option value="06:00">06:00</option>
+          <option value="06:30">06:30</option>
           <option value="07:00">07:00</option>
           <option value="07:30">07:30</option>
           <option value="08:00">08:00</option>
@@ -765,9 +945,25 @@ input::placeholder,textarea::placeholder{color:var(--text3)}
           <option value="22:00">22:00</option>
           <option value="22:30">22:30</option>
           <option value="23:00">23:00</option>
+          <option value="23:30">23:30</option>
         </select></div>
       <div class="field-group" style="text-align:center"><label class="fl" style="text-align:center;justify-content:center">週五</label><select id="f_late_fri" style="font-size:12px;padding:4px 6px">
           <option value="請選擇">請選擇</option>
+          <option value="無法">無法</option>
+          <option value="00:00">00:00</option>
+          <option value="00:30">00:30</option>
+          <option value="01:00">01:00</option>
+          <option value="01:30">01:30</option>
+          <option value="02:00">02:00</option>
+          <option value="02:30">02:30</option>
+          <option value="03:00">03:00</option>
+          <option value="03:30">03:30</option>
+          <option value="04:00">04:00</option>
+          <option value="04:30">04:30</option>
+          <option value="05:00">05:00</option>
+          <option value="05:30">05:30</option>
+          <option value="06:00">06:00</option>
+          <option value="06:30">06:30</option>
           <option value="07:00">07:00</option>
           <option value="07:30">07:30</option>
           <option value="08:00">08:00</option>
@@ -801,9 +997,25 @@ input::placeholder,textarea::placeholder{color:var(--text3)}
           <option value="22:00">22:00</option>
           <option value="22:30">22:30</option>
           <option value="23:00">23:00</option>
+          <option value="23:30">23:30</option>
         </select></div>
       <div class="field-group" style="text-align:center"><label class="fl" style="text-align:center;justify-content:center">週六</label><select id="f_late_sat" style="font-size:12px;padding:4px 6px">
           <option value="請選擇">請選擇</option>
+          <option value="無法">無法</option>
+          <option value="00:00">00:00</option>
+          <option value="00:30">00:30</option>
+          <option value="01:00">01:00</option>
+          <option value="01:30">01:30</option>
+          <option value="02:00">02:00</option>
+          <option value="02:30">02:30</option>
+          <option value="03:00">03:00</option>
+          <option value="03:30">03:30</option>
+          <option value="04:00">04:00</option>
+          <option value="04:30">04:30</option>
+          <option value="05:00">05:00</option>
+          <option value="05:30">05:30</option>
+          <option value="06:00">06:00</option>
+          <option value="06:30">06:30</option>
           <option value="07:00">07:00</option>
           <option value="07:30">07:30</option>
           <option value="08:00">08:00</option>
@@ -837,9 +1049,25 @@ input::placeholder,textarea::placeholder{color:var(--text3)}
           <option value="22:00">22:00</option>
           <option value="22:30">22:30</option>
           <option value="23:00">23:00</option>
+          <option value="23:30">23:30</option>
         </select></div>
       <div class="field-group" style="text-align:center"><label class="fl" style="text-align:center;justify-content:center">週日</label><select id="f_late_sun" style="font-size:12px;padding:4px 6px">
           <option value="請選擇">請選擇</option>
+          <option value="無法">無法</option>
+          <option value="00:00">00:00</option>
+          <option value="00:30">00:30</option>
+          <option value="01:00">01:00</option>
+          <option value="01:30">01:30</option>
+          <option value="02:00">02:00</option>
+          <option value="02:30">02:30</option>
+          <option value="03:00">03:00</option>
+          <option value="03:30">03:30</option>
+          <option value="04:00">04:00</option>
+          <option value="04:30">04:30</option>
+          <option value="05:00">05:00</option>
+          <option value="05:30">05:30</option>
+          <option value="06:00">06:00</option>
+          <option value="06:30">06:30</option>
           <option value="07:00">07:00</option>
           <option value="07:30">07:30</option>
           <option value="08:00">08:00</option>
@@ -873,6 +1101,7 @@ input::placeholder,textarea::placeholder{color:var(--text3)}
           <option value="22:00">22:00</option>
           <option value="22:30">22:30</option>
           <option value="23:00">23:00</option>
+          <option value="23:30">23:30</option>
         </select></div>
       </div>
     </div>
@@ -955,13 +1184,13 @@ input::placeholder,textarea::placeholder{color:var(--text3)}
     <div class="yn-row"><p>1. 是否可於兩週內報到？</p><div class="yn-group"><button class="yn-btn" onclick="setYN(this,'q_report','Y')">是</button><button class="yn-btn" onclick="setYN(this,'q_report','N')">否</button></div></div>
     <div class="yn-row"><p>2. 是否可彈性支援其他門市？</p><div class="yn-group"><button class="yn-btn" onclick="setYN(this,'q_support','Y')">是</button><button class="yn-btn" onclick="setYN(this,'q_support','N')">否</button></div></div>
     <div class="yn-row"><p>3. 是否可配合加班？（延後下班至少1小時）</p><div class="yn-group"><button class="yn-btn" onclick="setYN(this,'q_ot','Y')">是</button><button class="yn-btn" onclick="setYN(this,'q_ot','N')">否</button></div></div>
-    <div class="yn-row"><p>4. 是否有懷孕？（男性請填寫否）</p><div class="yn-group"><button class="yn-btn" onclick="setYN(this,'q6','Y')">是</button><button class="yn-btn" onclick="setYN(this,'q6','N')">否</button></div></div>
-    <div class="yn-row"><p>5. 是否有嚼檳榔之習慣？</p><div class="yn-group"><button class="yn-btn" onclick="setYN(this,'q7','Y')">是</button><button class="yn-btn" onclick="setYN(this,'q7','N')">否</button></div></div>
-    <div class="yn-row"><p>6. 是否為短期？（如為短期，請於備註提及任職期間）</p><div class="yn-group"><button class="yn-btn" onclick="setYN(this,'q_temp','Y')">是</button><button class="yn-btn" onclick="setYN(this,'q_temp','N')">否</button></div></div>
-    <div class="yn-row"><p>7. 是否具特殊身分（外籍人士 / 身心障礙手冊）？</p><div class="yn-group"><button class="yn-btn" onclick="setYN(this,'q3','Y')">是</button><button class="yn-btn" onclick="setYN(this,'q3','N')">否</button></div></div>
-    <div class="yn-row"><p>8. 是否患有重大、特殊、遺傳性、慢性疾病？</p><div class="yn-group"><button class="yn-btn" onclick="setYN(this,'q4','Y')">是</button><button class="yn-btn" onclick="setYN(this,'q4','N')">否</button></div></div>
-    <div class="yn-row"><p>9. 是否曾在警政司法單位有違法之犯罪紀錄、訴訟事件？</p><div class="yn-group"><button class="yn-btn" onclick="setYN(this,'q1','Y')">是</button><button class="yn-btn" onclick="setYN(this,'q1','N')">否</button></div></div>
-    <div class="yn-row"><p>10. 是否曾於蝦皮任職過（任何職缺、地點、職位）？</p><div class="yn-group"><button class="yn-btn" onclick="setYN(this,'q_spx','Y')">是</button><button class="yn-btn" onclick="setYN(this,'q_spx','N')">否</button></div></div>
+    <div class="yn-row"><p>4. 是否為短期？（如為短期，請於下述備註欄提及任職期間）</p><div class="yn-group"><button class="yn-btn" onclick="setYN(this,'q_temp','Y')">是</button><button class="yn-btn" onclick="setYN(this,'q_temp','N')">否</button></div></div>
+    <div class="yn-row"><p>5. 是否曾於蝦皮錄取任職過，任何職缺、地點、職位？（如是短期，請於下述備註欄提及任職門市與期間）</p><div class="yn-group"><button class="yn-btn" onclick="setYN(this,'q_spx','Y')">是</button><button class="yn-btn" onclick="setYN(this,'q_spx','N')">否</button></div></div>
+    <div class="yn-row"><p>6. 請問您是否接受此工作需要經常搬重物、久站、獨立一人排班？</p><div class="yn-group"><button class="yn-btn" onclick="setYN(this,'q_physical','Y')">是</button><button class="yn-btn" onclick="setYN(this,'q_physical','N')">否</button></div></div>
+    <div class="yn-row"><p>7. 是否有嚼檳榔之習慣？</p><div class="yn-group"><button class="yn-btn" onclick="setYN(this,'q7','Y')">是</button><button class="yn-btn" onclick="setYN(this,'q7','N')">否</button></div></div>
+    <div class="yn-row"><p>8. 是否具特殊身分（外籍人士 / 身心障礙手冊（重度/中度/輕度））？</p><div class="yn-group"><button class="yn-btn" onclick="setYN(this,'q3','Y')">是</button><button class="yn-btn" onclick="setYN(this,'q3','N')">否</button></div></div>
+    <div class="yn-row"><p>9. 是否患有重大、特殊、遺傳性、慢性疾病、精神官能方面疾病？</p><div class="yn-group"><button class="yn-btn" onclick="setYN(this,'q4','Y')">是</button><button class="yn-btn" onclick="setYN(this,'q4','N')">否</button></div></div>
+    <div class="yn-row"><p>10. 是否曾在警政司法單位有違法之犯罪紀錄、訴訟事件？</p><div class="yn-group"><button class="yn-btn" onclick="setYN(this,'q1','Y')">是</button><button class="yn-btn" onclick="setYN(this,'q1','N')">否</button></div></div>
     <div class="field-row col1" style="margin-top:10px">
       <div class="field-group"><label class="fl">※ 備註（第6~10題有填「是」請補充說明）</label>
         <textarea id="f_decl_note" placeholder="請補充說明..."></textarea>
@@ -983,6 +1212,24 @@ input::placeholder,textarea::placeholder{color:var(--text3)}
     <div class="field-group"><label class="fl">姓名<span class="req">*</span></label><input type="text" id="f_ec_name" placeholder="緊急聯絡人姓名"></div>
     <div class="field-group"><label class="fl">關係<span class="req">*</span></label><input type="text" id="f_ec_rel" placeholder="例：父母、配偶"></div>
     <div class="field-group"><label class="fl">聯絡電話<span class="req">*</span></label><input type="tel" id="f_ec_phone" placeholder="09XX-XXX-XXX"></div>
+  </div>
+  <div class="field-row col1" style="margin-top:10px">
+    <div class="field-group">
+      <label class="fl">請問您是以何種管道得知此工作呢？<span class="req">*</span></label>
+      <select id="f_referral">
+        <option value="">請選擇</option>
+        <option>518人力銀行</option>
+        <option>小雞上工</option>
+        <option>朋友/親人/內部員工推薦</option>
+        <option>FB/IG/其他社群</option>
+        <option>104/1111/yes123</option>
+        <option>其他</option>
+      </select>
+    </div>
+    <div class="field-group" id="referral-other-wrap" style="display:none">
+      <label class="fl">請填寫其他管道<span class="req">*</span></label>
+      <input type="text" id="f_referral_other" placeholder="請說明">
+    </div>
   </div>
   <div class="warn-box">
     ⚠️ 送出前請確認以下資訊填寫完整：<br>
@@ -1092,6 +1339,9 @@ document.querySelectorAll('.radio-pill input').forEach(rb=>{
 document.getElementById('agreeChk').addEventListener('change',function(){
   document.getElementById('agreePill').classList.toggle('checked',this.checked);
 });
+document.getElementById('f_referral').addEventListener('change',function(){
+  document.getElementById('referral-other-wrap').style.display = this.value==='其他' ? '' : 'none';
+});
 
 function setYN(btn,name,val){
   ynValues[name]=val;
@@ -1115,11 +1365,19 @@ function validate(){
     if(!document.getElementById('f_gender').value){showToast('⚠️ 請選擇性別');return false;}
     if(!isHQ && !document.getElementById('f_birth').value){showToast('⚠️ 請填寫出生日期');return false;}
     if(!isHQ && !document.getElementById('f_id').value.trim()){showToast('⚠️ 請填寫身分證字號');return false;}
+    if(!isHQ && !document.getElementById('f_height').value.trim()){showToast('⚠️ 請填寫身高');return false;}
+    if(!isHQ && !document.getElementById('f_weight').value.trim()){showToast('⚠️ 請填寫體重');return false;}
     if(!document.getElementById('f_phone').value.trim()){showToast('⚠️ 請填寫手機號碼');return false;}
     if(!document.getElementById('f_email').value.trim()){showToast('⚠️ 請填寫電子信箱');return false;}
     if(!document.getElementById('f_address').value.trim()){showToast('⚠️ 請填寫通訊地址');return false;}
+    if(!document.getElementById('f_household').value.trim()){showToast('⚠️ 請填寫戶籍地');return false;}
     if(!document.querySelector('[name=shopee_exp]:checked')){showToast('⚠️ 請回答是否曾應徵蝦皮');return false;}
     if(!document.getElementById('f_marital').value){showToast('⚠️ 請選擇婚姻狀況');return false;}
+  }
+  if(cur===2){
+    if(!document.getElementById('f_edu1_period').value.trim()){showToast('⚠️ 請填寫學歷起訖年份');return false;}
+    if(!document.getElementById('f_edu1_school').value.trim()){showToast('⚠️ 請填寫學校名稱');return false;}
+    if(!document.getElementById('f_edu1_dept').value.trim()){showToast('⚠️ 請填寫科系別');return false;}
   }
 
   if(cur===3){
@@ -1143,19 +1401,21 @@ function validate(){
     if(!ynValues['q_report']){showToast('⚠️ 聲明第1題尚未作答');return false;}
     if(!ynValues['q_support']){showToast('⚠️ 聲明第2題尚未作答');return false;}
     if(!ynValues['q_ot']){showToast('⚠️ 聲明第3題尚未作答');return false;}
-    if(!ynValues['q6']){showToast('⚠️ 聲明第4題尚未作答');return false;}
-    if(!ynValues['q7']){showToast('⚠️ 聲明第5題尚未作答');return false;}
-    if(!ynValues['q_temp']){showToast('⚠️ 聲明第6題尚未作答');return false;}
-    if(!ynValues['q3']){showToast('⚠️ 聲明第7題尚未作答');return false;}
-    if(!ynValues['q4']){showToast('⚠️ 聲明第8題尚未作答');return false;}
-    if(!ynValues['q1']){showToast('⚠️ 聲明第9題尚未作答');return false;}
-    if(!ynValues['q_spx']){showToast('⚠️ 聲明第10題尚未作答');return false;}
+    if(!ynValues['q_temp']){showToast('⚠️ 聲明第4題尚未作答');return false;}
+    if(!ynValues['q_spx']){showToast('⚠️ 聲明第5題尚未作答');return false;}
+    if(!ynValues['q_physical']){showToast('⚠️ 聲明第6題尚未作答');return false;}
+    if(!ynValues['q7']){showToast('⚠️ 聲明第7題尚未作答');return false;}
+    if(!ynValues['q3']){showToast('⚠️ 聲明第8題尚未作答');return false;}
+    if(!ynValues['q4']){showToast('⚠️ 聲明第9題尚未作答');return false;}
+    if(!ynValues['q1']){showToast('⚠️ 聲明第10題尚未作答');return false;}
     if(!document.getElementById('agreeChk').checked){showToast('⚠️ 請勾選同意聲明後再繼續');return false;}
   }
   if(cur===6){
     if(!document.getElementById('f_ec_name').value.trim()){showToast('⚠️ 請填寫緊急聯絡人姓名');return false;}
     if(!document.getElementById('f_ec_rel').value.trim()){showToast('⚠️ 請填寫緊急聯絡人關係');return false;}
     if(!document.getElementById('f_ec_phone').value.trim()){showToast('⚠️ 請填寫緊急聯絡人電話');return false;}
+    if(!document.getElementById('f_referral').value){showToast('⚠️ 請選擇得知此工作的管道');return false;}
+    if(document.getElementById('f_referral').value==='其他' && !document.getElementById('f_referral_other').value.trim()){showToast('⚠️ 請填寫其他管道說明');return false;}
   }
   return true;
 }
@@ -1259,6 +1519,7 @@ function collectData(){
     '手機':document.getElementById('f_phone').value,
     '電子信箱':document.getElementById('f_email').value,
     '通訊地址':document.getElementById('f_address').value,
+    '戶籍地':document.getElementById('f_household').value,
     '曾應徵蝦皮':(document.querySelector('[name=shopee_exp]:checked')||{}).value||'',
     '婚姻狀況':document.getElementById('f_marital').value,
     '兵役狀況':document.getElementById('f_military').value,
@@ -1297,9 +1558,10 @@ function collectData(){
     '聲明Q_報到':ynValues['q_report']||'',
     '聲明Q_支援':ynValues['q_support']||'',
     '聲明Q_加班':ynValues['q_ot']||'',
-    '聲明Q6懷孕':ynValues['q6']||'',
-    '聲明Q7檳榔':ynValues['q7']||'',
     '聲明Q_短期':ynValues['q_temp']||'',
+    '曾應徵蝦皮':ynValues['q_spx']||'',
+    '聲明Q_搬重久站獨立':ynValues['q_physical']||'',
+    '聲明Q7檳榔':ynValues['q7']||'',
     '聲明Q3特殊身分':ynValues['q3']||'',
     '聲明Q4疾病':ynValues['q4']||'',
     '聲明Q1犯罪':ynValues['q1']||'',
@@ -1308,6 +1570,7 @@ function collectData(){
     '緊急聯絡人姓名':document.getElementById('f_ec_name').value,
     '緊急聯絡人關係':document.getElementById('f_ec_rel').value,
     '緊急聯絡人電話':document.getElementById('f_ec_phone').value,
+    '得知管道':document.getElementById('f_referral').value==='其他' ? '其他：'+document.getElementById('f_referral_other').value : document.getElementById('f_referral').value,
   };
 }
 function showSuccess(){
