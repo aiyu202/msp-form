@@ -366,7 +366,7 @@ input::placeholder,textarea::placeholder{color:var(--text3)}
   <div class="section-title"><span class="section-num">4</span> 可上班時間 <span class="en-label">Availability</span></div>
   <div id="sched-grid-wrap">
     <div class="field-group" style="margin-bottom:8px">
-      <label class="fl">最早上班時間<span class="req">*</span></label>
+      <label class="fl" id="label_early_time">最早上班時間<span class="req">*</span></label>
       <div style="font-size:11px;color:var(--text3);margin-bottom:6px">請選擇每天最早可到班時間</div>
       <div style="display:grid;grid-template-columns:repeat(7,1fr);gap:6px">
       <div class="field-group" style="text-align:center"><label class="fl" style="text-align:center;justify-content:center">週一</label><select id="f_early_mon" style="font-size:12px;padding:4px 6px">
@@ -736,7 +736,7 @@ input::placeholder,textarea::placeholder{color:var(--text3)}
       </div>
     </div>
     <div class="field-group" style="margin-top:12px">
-      <label class="fl">最晚下班時間<span class="req">*</span></label>
+      <label class="fl" id="label_late_time">最晚下班時間<span class="req">*</span></label>
       <div style="font-size:11px;color:var(--text3);margin-bottom:6px">請選擇每天最晚可下班時間</div>
       <div style="display:grid;grid-template-columns:repeat(7,1fr);gap:6px">
       <div class="field-group" style="text-align:center"><label class="fl" style="text-align:center;justify-content:center">週一</label><select id="f_late_mon" style="font-size:12px;padding:4px 6px">
@@ -1185,8 +1185,8 @@ input::placeholder,textarea::placeholder{color:var(--text3)}
     <div class="yn-row"><p>2. 是否可彈性支援其他門市？</p><div class="yn-group"><button class="yn-btn" onclick="setYN(this,'q_support','Y')">是</button><button class="yn-btn" onclick="setYN(this,'q_support','N')">否</button></div></div>
     <div class="yn-row"><p>3. 是否可配合加班？（延後下班至少1小時）</p><div class="yn-group"><button class="yn-btn" onclick="setYN(this,'q_ot','Y')">是</button><button class="yn-btn" onclick="setYN(this,'q_ot','N')">否</button></div></div>
     <div class="yn-row"><p>4. 是否為短期？（如為短期，請於下述備註欄提及任職期間）</p><div class="yn-group"><button class="yn-btn" onclick="setYN(this,'q_temp','Y')">是</button><button class="yn-btn" onclick="setYN(this,'q_temp','N')">否</button></div></div>
-    <div class="yn-row"><p>5. 請問您是否接受此工作需要經常搬重物、久站、獨立一人排班？</p><div class="yn-group"><button class="yn-btn" onclick="setYN(this,'q_spx','Y')">是</button><button class="yn-btn" onclick="setYN(this,'q_spx','N')">否</button></div></div>
-    <div class="yn-row"><p>6. 是否曾於蝦皮錄取任職過，任何職缺、地點、職位？（如是，請於下述備註欄提及任職門市與期間）</p><div class="yn-group"><button class="yn-btn" onclick="setYN(this,'q_physical','Y')">是</button><button class="yn-btn" onclick="setYN(this,'q_physical','N')">否</button></div></div>
+    <div class="yn-row"><p>5. 是否曾於蝦皮錄取任職過，任何職缺、地點、職位？（如是，請於下述備註欄提及任職門市與期間）</p><div class="yn-group"><button class="yn-btn" onclick="setYN(this,'q_spx','Y')">是</button><button class="yn-btn" onclick="setYN(this,'q_spx','N')">否</button></div></div>
+    <div class="yn-row"><p>6. 請問您是否接受此工作需要經常搬重物、久站、獨立一人排班？</p><div class="yn-group"><button class="yn-btn" onclick="setYN(this,'q_physical','Y')">是</button><button class="yn-btn" onclick="setYN(this,'q_physical','N')">否</button></div></div>
     <div class="yn-row"><p>7. 是否有嚼檳榔之習慣？</p><div class="yn-group"><button class="yn-btn" onclick="setYN(this,'q7','Y')">是</button><button class="yn-btn" onclick="setYN(this,'q7','N')">否</button></div></div>
     <div class="yn-row"><p>8. 是否具特殊身分（外籍人士 / 身心障礙手冊（重度/中度/輕度））？</p><div class="yn-group"><button class="yn-btn" onclick="setYN(this,'q3','Y')">是</button><button class="yn-btn" onclick="setYN(this,'q3','N')">否</button></div></div>
     <div class="yn-row"><p>9. 是否患有重大、特殊、遺傳性、慢性疾病、精神官能方面疾病？</p><div class="yn-group"><button class="yn-btn" onclick="setYN(this,'q4','Y')">是</button><button class="yn-btn" onclick="setYN(this,'q4','N')">否</button></div></div>
@@ -1291,12 +1291,17 @@ function selectStore(type){
 
   // 總部職務：隱藏/顯示特定欄位
   const isHQ = type === 'hq';
-  // 可上班日、可支援門市
+  const isTemp = type === 'temp';
+  // 可上班日、可支援門市（總部隱藏；短期工讀則保留顯示但改為選填）
   const schedWrap = document.getElementById('sched-grid-wrap');
   const supportWrap = document.getElementById('support-store-wrap');
-  if(schedWrap) schedWrap.closest('.field-group') ? schedWrap.style.display = isHQ ? 'none' : '' : null;
   if(schedWrap) schedWrap.style.display = isHQ ? 'none' : '';
   if(supportWrap) supportWrap.style.display = isHQ ? 'none' : '';
+  // 短期工讀：標題加註「選填」提示
+  const earlyLabel = document.getElementById('label_early_time');
+  const lateLabel = document.getElementById('label_late_time');
+  if(earlyLabel) earlyLabel.innerHTML = isTemp ? '最早上班時間（選填）' : '最早上班時間<span class="req">*</span>';
+  if(lateLabel) lateLabel.innerHTML = isTemp ? '最晚下班時間（選填）' : '最晚下班時間<span class="req">*</span>';
   // 交通工具 * 顯示/隱藏
   const transportLabel = document.querySelector('#transport-wrap label.fl');
   if(transportLabel) transportLabel.innerHTML = isHQ ? '交通工具' : '交通工具<span class="req">*</span>';
@@ -1354,6 +1359,7 @@ function showToast(msg){
 }
 function validate(){
   const isHQ = selectedStore === 'hq';
+  const isTemp = selectedStore === 'temp';
   if(cur===0){
     if(!selectedStore){showToast('⚠️ 請選擇應徵店別');return false;}
     if(![...document.querySelectorAll('[name=shift]:checked')].length){showToast('⚠️ 請勾選應徵班別/職缺');return false;}
@@ -1383,7 +1389,7 @@ function validate(){
   if(cur===3){
     if(!isHQ && !document.getElementById('f_license').value){showToast('⚠️ 請選擇駕照種類');return false;}
     if(!isHQ && !ynValues['bike']){showToast('⚠️ 請回答是否有機車');return false;}
-    if(!isHQ){
+    if(!isHQ && !isTemp){
       const earlyFilled=[...document.querySelectorAll('[id^="f_early_"]')].some(s=>s.value&&s.value!=='請選擇');
       if(!earlyFilled){showToast('⚠️ 請至少填寫一天的最早上班時間');return false;}
     }
@@ -1559,13 +1565,12 @@ function collectData(){
     '聲明Q_支援':ynValues['q_support']||'',
     '聲明Q_加班':ynValues['q_ot']||'',
     '聲明Q_短期':ynValues['q_temp']||'',
-    '曾應徵蝦皮':ynValues['q_spx']||'',
+    '聲明Q_蝦皮任職':ynValues['q_spx']||'',
     '聲明Q_搬重久站獨立':ynValues['q_physical']||'',
     '聲明Q7檳榔':ynValues['q7']||'',
     '聲明Q3特殊身分':ynValues['q3']||'',
     '聲明Q4疾病':ynValues['q4']||'',
     '聲明Q1犯罪':ynValues['q1']||'',
-    '曾應徵蝦皮':ynValues['q_spx']||'',
     '聲明備註':(document.getElementById('f_decl_note')||{}).value||'',
     '緊急聯絡人姓名':document.getElementById('f_ec_name').value,
     '緊急聯絡人關係':document.getElementById('f_ec_rel').value,
