@@ -57,13 +57,14 @@ input:focus,select:focus,textarea:focus{border-color:var(--orange);box-shadow:0 
 textarea{resize:vertical;min-height:70px}
 input::placeholder,textarea::placeholder{color:var(--text3)}
 .store-cards{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:6px}
-.store-card{border:2px solid var(--border);border-radius:var(--radius-sm);padding:12px;cursor:pointer;transition:all .15s;background:#fff;user-select:none}
+.store-card{position:relative;border:2px solid var(--border);border-radius:var(--radius-sm);padding:12px;cursor:pointer;transition:all .15s;background:#fff;user-select:none}
 .store-card:hover{border-color:var(--orange)}
 .store-card input[type=radio]{display:none}
 .store-card.selected{border-color:var(--orange);background:var(--orange-light)}
 .store-card-title{font-size:14px;font-weight:600;color:var(--text)}
 .store-card.selected .store-card-title{color:var(--orange-dark)}
 .store-card-desc{font-size:11px;color:var(--text3);margin-top:3px;line-height:1.5}
+.store-card-badge{position:absolute;top:-8px;right:8px;background:var(--red);color:#fff;font-size:10px;font-weight:700;padding:2px 8px;border-radius:10px;letter-spacing:.5px;box-shadow:0 1px 3px rgba(0,0,0,.15)}
 .shift-panel{display:none;margin-top:12px}
 .shift-panel.show{display:block}
 .shift-note{font-size:11px;color:#7A3800;background:#FFF7F0;padding:10px 12px;border-radius:var(--radius-sm);border:1px solid var(--orange-mid);margin-bottom:10px;line-height:1.8}
@@ -167,10 +168,16 @@ input::placeholder,textarea::placeholder{color:var(--text3)}
         <div class="store-card-title">📦 寄件店</div>
         <div class="store-card-desc">蝦皮寄件服務門市<br>早/午/晚/夜班</div>
       </label>
+      <label class="store-card" onclick="selectStore('hd')">
+        <input type="radio" name="store_type" value="hd">
+        <div class="store-card-title">🏠 HD門市</div>
+        <div class="store-card-desc">Home Delivery<br>不需跑店，配合排班</div>
+      </label>
       <label class="store-card" onclick="selectStore('temp')">
+        <div class="store-card-badge">⚡ 快速上班</div>
         <input type="radio" name="store_type" value="temp">
         <div class="store-card-title">⏰ 短期工讀</div>
-        <div class="store-card-desc">雙北/桃園少數區域限定<br>※蝦皮短期派遣※</div>
+        <div class="store-card-desc">詢問缺額，立即報班，最快當天上班<br>又快又彈性｜雙北/桃園少數區域限定</div>
       </label>
       <label class="store-card" onclick="selectStore('hq')">
         <input type="radio" name="store_type" value="hq">
@@ -204,17 +211,25 @@ input::placeholder,textarea::placeholder{color:var(--text3)}
   <!-- 智取店 -->
   <div class="shift-panel" id="panel-smart">
     <div class="shift-note">
-      📌 彈性排班 2–6 小時｜須有交通工具（機車/駕照）<br>
-      📌 早晚班支援範圍：以地址為中心 10 公里；夜班：16 公里<br>
+      📌 須有交通工具（機車/駕照）<br>
+      📌 早班時薪：彈性排班 2–5 小時（以 4 小時為主）｜晚班時薪：彈性排班 2–6 小時<br>
+      📌 跑店範圍：一天跑點 3–5 家店，跑店間距離 10km 內<br>
+      📌 夜班支援範圍：以地址為中心 16 公里<br>
       📌 假日班每月至少提供 6 天給班，上班時數 2–5 小時，依實際情況而定
+    </div>
+    <div class="shift-note">
+      📌 排班條件：<br>
+      1. 可指定休假日（例如週三固定不能上班）<br>
+      2. 六日至少可上班一天<br>
+      3. 每週至少可給班 3 天，4 天尤佳
     </div>
     <label class="fl" style="font-size:13px;font-weight:500;color:var(--text2);margin-bottom:6px;display:block">應徵班別<span class="req">*</span></label>
     <div class="shift-options">
       <label class="shift-opt"><input type="checkbox" name="shift" value="智取店-早班">
-        <div><div class="shift-opt-label">早班</div><div class="shift-opt-time">07:00–12:00</div></div>
+        <div><div class="shift-opt-label">早班時薪</div><div class="shift-opt-time">07:30–13:30</div></div>
       </label>
       <label class="shift-opt"><input type="checkbox" name="shift" value="智取店-晚班">
-        <div><div class="shift-opt-label">晚班</div><div class="shift-opt-time">17:30–23:30</div></div>
+        <div><div class="shift-opt-label">晚班時薪</div><div class="shift-opt-time">17:30–23:30</div></div>
       </label>
       <label class="shift-opt"><input type="checkbox" name="shift" value="智取店-假日早班">
         <div><div class="shift-opt-label">假日早班（時薪）</div><div class="shift-opt-time">07:00–12:00（假日）</div></div>
@@ -250,12 +265,51 @@ input::placeholder,textarea::placeholder{color:var(--text3)}
     </div>
   </div>
 
+  <!-- HD門市 -->
+  <div class="shift-panel" id="panel-hd">
+    <div class="shift-note">
+      📌 招募條件：<br>
+      1. 必須配合排班<br>
+      2. 可指定上班時段（例如週三固定不能上班）<br>
+      3. 六日至少可上班一天<br>
+      4. 一週至少要給四天班<br>
+      5. 不需跑店
+    </div>
+    <label class="fl" style="font-size:13px;font-weight:500;color:var(--text2);margin-bottom:6px;display:block">HD專用二輪<span class="req">*</span></label>
+    <div class="shift-options">
+      <label class="shift-opt"><input type="checkbox" name="shift" value="HD專用二輪-早班">
+        <div><div class="shift-opt-label">早班</div><div class="shift-opt-time">09:00–13:00</div></div>
+      </label>
+      <label class="shift-opt"><input type="checkbox" name="shift" value="HD專用二輪-午班">
+        <div><div class="shift-opt-label">午班</div><div class="shift-opt-time">13:00–17:00</div></div>
+      </label>
+      <label class="shift-opt"><input type="checkbox" name="shift" value="HD專用二輪-晚班">
+        <div><div class="shift-opt-label">晚班</div><div class="shift-opt-time">18:00–22:00</div></div>
+      </label>
+    </div>
+    <label class="fl" style="font-size:13px;font-weight:500;color:var(--text2);margin:14px 0 6px;display:block">HD專用一輪</label>
+    <div class="shift-options">
+      <label class="shift-opt"><input type="checkbox" name="shift" value="HD專用一輪-早班">
+        <div><div class="shift-opt-label">早班</div><div class="shift-opt-time">10:00–14:00</div></div>
+      </label>
+      <label class="shift-opt"><input type="checkbox" name="shift" value="HD專用一輪-午班">
+        <div><div class="shift-opt-label">午班</div><div class="shift-opt-time">13:00–17:00</div></div>
+      </label>
+      <label class="shift-opt"><input type="checkbox" name="shift" value="HD專用一輪-晚班">
+        <div><div class="shift-opt-label">晚班</div><div class="shift-opt-time">19:30–23:30</div></div>
+      </label>
+    </div>
+  </div>
+
   <!-- 短期 -->
   <div class="shift-panel" id="panel-temp">
-    <div class="shift-note">📌 短期工讀目前僅雙北/桃園少數區域有開缺，詳細地點將於面試時說明。</div>
+    <div class="shift-note">
+      ⚡ 詢問缺額、立即報班，最快當天即可上班，又快又彈性！<br>
+      📌 短期工讀目前僅雙北/桃園少數區域有開缺，詳細地點將於面試時說明。
+    </div>
     <div class="shift-options">
       <label class="shift-opt"><input type="checkbox" name="shift" value="※蝦皮短期派遣※">
-        <div><div class="shift-opt-label">※蝦皮短期派遣※</div><div class="shift-opt-time">雙北/桃園少數區域</div></div>
+        <div><div class="shift-opt-label">※蝦皮短期派遣※</div><div class="shift-opt-time">雙北/桃園少數區域｜最快當天上班</div></div>
       </label>
     </div>
   </div>
@@ -1428,7 +1482,7 @@ function validate(){
 function renderPreview(){
   const days=['一','二','三','四','五','六','日'];
   const avail=[...document.querySelectorAll('.sched-grid [data-day]:checked')].map(c=>days[parseInt(c.dataset.day)-1]).join('、')||'（未勾選）';
-  const storeMap={manned:'🏪 有人店',smart:'🤖 智取店',parcel:'📦 寄件店',temp:'⏰ 短期工讀',hq:'🏢 總部職務'};
+  const storeMap={manned:'🏪 有人店',smart:'🤖 智取店',parcel:'📦 寄件店',hd:'🏠 HD門市',temp:'⏰ 短期工讀',hq:'🏢 總部職務'};
   const shifts=[...document.querySelectorAll('[name=shift]:checked')].map(c=>c.value).join('、')||'（未勾選）';
   const shopeeExp=(document.querySelector('[name=shopee_exp]:checked')||{}).value||'（未填）';
 
@@ -1507,7 +1561,7 @@ function goBack(){cur=Math.max(0,cur-1);updateProgress();window.scrollTo({top:0,
 function collectData(){
   const days=['一','二','三','四','五','六','日'];
   
-  const storeMap={manned:'有人店',smart:'智取店',parcel:'寄件店',temp:'短期工讀',hq:'總部職務'};
+  const storeMap={manned:'有人店',smart:'智取店',parcel:'寄件店',hd:'HD門市',temp:'短期工讀',hq:'總部職務'};
   return{
     '填表時間':new Date().toLocaleString('zh-TW'),
     '應徵店別':storeMap[selectedStore]||'',
